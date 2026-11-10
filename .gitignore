@@ -1,0 +1,13 @@
+node_modules/
+.next/
+.vercel/
+coverage/
+playwright-report/
+test-results/
+qa/
+*.tsbuildinfo
+.env
+.env*.local
+.env*
+!.env.example
+!.env.test.example
