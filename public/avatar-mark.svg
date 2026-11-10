@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="MG monogram">
+  <rect width="240" height="240" fill="#eeebe5"/>
+  <circle cx="120" cy="120" r="82" fill="#f6f3ee" stroke="#dcd7ce" stroke-width="1"/>
+  <path d="M75 147V93l24 29 24-29v54M181 105a25 25 0 1 0 3 31h-18v-13h23v24" fill="none" stroke="#1b1a17" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"/>
+</svg>

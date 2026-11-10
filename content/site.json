@@ -1,0 +1,124 @@
+{
+  "_comment": "PLACEHOLDER CONTENT: Replace these sample details, links, and unverified demo metrics before publishing.",
+  "profile": {
+    "name": "Meklit Girmaw",
+    "role": "Fullstack developer",
+    "proofPoint": "A practical mix of product thinking, careful interfaces, and dependable systems.",
+    "bio": "I work across the full stack to turn busy, manual workflows into clear tools people can rely on. I care about thoughtful details, simple architecture, and shipping work that earns trust.",
+    "location": "Addis Ababa, Ethiopia",
+    "availability": "Available for remote and hybrid projects",
+    "email": "hello@example.dev",
+    "socials": [
+      { "label": "GitHub", "url": "https://github.com/your-handle" },
+      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/your-handle" }
+    ],
+    "photo": {
+      "src": "/avatar-mark.svg",
+      "alt": "Monogram portrait placeholder for Meklit Girmaw"
+    }
+  },
+  "hero": {
+    "headline": "I build useful software\nfor everyday work.",
+    "subline": "Fullstack development for thoughtful teams, from the first sketch to the last reliable edge case.",
+    "primaryCta": { "label": "Explore selected work", "href": "#work" },
+    "secondaryCta": { "label": "Start a conversation", "href": "#contact" }
+  },
+  "projects": [
+    {
+      "slug": "clinic-queue-manager",
+      "title": "Clinic Queue Manager",
+      "summary": "A queue management prototype that gives clinic staff a clear view of patient flow during busy hours.",
+      "role": "Backend developer · data structures and algorithms",
+      "stack": ["C++", "STL", "Data structures", "Algorithms"],
+      "year": "2025",
+      "problem": "Paper lists and ad hoc updates make it difficult for a small clinic team to keep an accurate order when arrivals bunch together or urgent cases need attention.",
+      "approach": "Modeled arrivals as explicit queue entries, then separated standard FIFO handling from priority insertions. Kept the operations small and measurable so each data structure choice could be reasoned about and tested.",
+      "outcome": "Built a lightweight C++ prototype around an explicit queue model, with operations for check-in, priority handling, lookup, and completion. The project focused on predictable behavior and clear complexity trade-offs.",
+      "metric": "Placeholder metric to replace after testing: target 20% shorter average wait time.",
+      "cover": {
+        "src": "/work/clinic-queue.svg",
+        "alt": "Queue dashboard concept showing patient sequence, wait time, and priority status"
+      },
+      "links": [
+        {
+          "label": "Source code placeholder",
+          "url": "https://github.com/your-handle/clinic-queue-manager"
+        }
+      ],
+      "featured": true
+    },
+    {
+      "slug": "social-media-agent",
+      "title": "Social Media Agent",
+      "summary": "An AI-assisted workflow for turning a brief into a reviewed, platform-ready draft using the Gemini API.",
+      "role": "Fullstack developer · AI integration",
+      "stack": ["TypeScript", "Gemini API", "Next.js", "Zod"],
+      "year": "2025",
+      "problem": "Preparing a consistent set of social drafts from a short campaign brief often means repeating the same research, formatting, and review work across channels.",
+      "approach": "Turned the brief into a validated structured input, asked the Gemini API for bounded draft options, then returned a typed response into a human review queue. Kept publishing outside the prototype so generated content could not be posted without approval.",
+      "outcome": "Prototyped an agent workflow that accepts a brief, produces structured draft options, and leaves a human review step before anything can be published. Input and output shapes are validated so incomplete results are easy to catch.",
+      "metric": "Placeholder evaluation to replace: compare review time across 10 representative briefs.",
+      "cover": {
+        "src": "/work/social-agent.svg",
+        "alt": "Campaign workspace concept with a brief and three reviewed draft options"
+      },
+      "links": [
+        {
+          "label": "Source code placeholder",
+          "url": "https://github.com/your-handle/social-media-agent"
+        }
+      ],
+      "featured": true
+    }
+  ],
+  "experience": [
+    {
+      "company": "Independent practice",
+      "role": "Fullstack developer",
+      "period": "2024 — Present",
+      "highlights": [
+        "Build small web products from early requirements through implementation and handoff.",
+        "Prototype data-heavy workflows and AI-assisted tools with clear human review points."
+      ]
+    },
+    {
+      "company": "Project-based learning",
+      "role": "Software developer",
+      "period": "2022 — 2024",
+      "highlights": [
+        "Strengthened core programming skills through focused C++ and fullstack projects.",
+        "Practiced breaking ambiguous product needs into tested, maintainable pieces."
+      ]
+    }
+  ],
+  "services": [
+    {
+      "title": "Fullstack product builds",
+      "description": "A clear, responsive web product from data model to polished interface."
+    },
+    {
+      "title": "Workflow and AI prototypes",
+      "description": "Focused experiments that connect real processes to useful, reviewable automation."
+    },
+    {
+      "title": "Frontend refinement",
+      "description": "Accessible, fast interfaces with careful interaction and content hierarchy."
+    }
+  ],
+  "notes": [
+    {
+      "title": "Make the human review step part of the design",
+      "date": "2025-04-12",
+      "excerpt": "A useful AI workflow makes it easy to inspect, correct, and trust the work before it moves forward.",
+      "body": "Automation is most helpful when it reduces repeated effort without making decisions invisible. In the Social Media Agent prototype, generated drafts remain drafts: people can inspect structure, adjust tone, and choose what moves forward. That review step is part of the product, not a patch added at the end.\n\nThe same principle applies to internal tools. Make state visible, give people a clear way to correct mistakes, and measure the work that matters before claiming a result."
+    }
+  ],
+  "seo": {
+    "siteTitle": "Meklit Girmaw — Fullstack Developer",
+    "description": "Fullstack development for thoughtful teams, with a focus on useful workflows, clear interfaces, and dependable systems.",
+    "ogImage": {
+      "src": "/opengraph-image",
+      "alt": "Social preview for Meklit Girmaw, fullstack developer"
+    }
+  }
+}
