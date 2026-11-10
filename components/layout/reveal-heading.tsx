@@ -41,11 +41,7 @@ export function RevealHeading({
     return () => observer.disconnect();
   }, []);
 
-  const visibility = mounted
-    ? isVisible
-      ? "is-visible"
-      : "reveal-ready"
-    : "";
+  const visibility = mounted ? (isVisible ? "is-visible" : "reveal-ready") : "";
   return (
     <Heading
       id={id}

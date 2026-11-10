@@ -1,9 +1,11 @@
 import { expect, test, type Page } from "@playwright/test";
 import siteContent from "../../content/site.json";
 
-const sensitiveConsolePattern = /hydrat|did not match|non-static position|Hydration/i;
+const sensitiveConsolePattern =
+  /hydrat|did not match|non-static position|Hydration/i;
 const firstSlug = siteContent.projects[0]?.slug;
-if (!firstSlug) throw new Error("At least one project is needed for console tests.");
+if (!firstSlug)
+  throw new Error("At least one project is needed for console tests.");
 
 function watchConsole(page: Page) {
   const messages: string[] = [];
@@ -25,14 +27,16 @@ test.describe("hydration and Motion console regression", () => {
     "/admin/login",
     "/not-found",
   ]) {
-    test(`has no hydration or position warnings on ${route}`, async ({ page }) => {
+    test(`has no hydration or position warnings on ${route}`, async ({
+      page,
+    }) => {
       const messages = watchConsole(page);
       await page.goto(route);
       await expect(page.locator("main")).toBeVisible();
       await page.waitForTimeout(800);
-      expect(messages.filter((message) => sensitiveConsolePattern.test(message))).toEqual(
-        [],
-      );
+      expect(
+        messages.filter((message) => sensitiveConsolePattern.test(message)),
+      ).toEqual([]);
     });
   }
 
@@ -54,9 +58,9 @@ test.describe("hydration and Motion console regression", () => {
         })),
       );
       expect(headingStates.every((state) => state.opacity === "1")).toBe(true);
-      expect(
-        headingStates.every((state) => state.animation === "none"),
-      ).toBe(true);
+      expect(headingStates.every((state) => state.animation === "none")).toBe(
+        true,
+      );
       const media = page.locator(".project-media-initial").first();
       await expect(media).toBeVisible();
       await expect(media).toHaveCSS("opacity", "1");
@@ -64,9 +68,9 @@ test.describe("hydration and Motion console regression", () => {
         "animation-name",
         "none",
       );
-      expect(messages.filter((message) => sensitiveConsolePattern.test(message))).toEqual(
-        [],
-      );
+      expect(
+        messages.filter((message) => sensitiveConsolePattern.test(message)),
+      ).toEqual([]);
     });
   });
 });

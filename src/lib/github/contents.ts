@@ -1,9 +1,8 @@
 import { parseSiteContent, type SiteContent } from "@/src/lib/content/schema";
 
-const apiRoot = (process.env.GITHUB_API_URL ?? "https://api.github.com").replace(
-  /\/+$/,
-  "",
-);
+const apiRoot = (
+  process.env.GITHUB_API_URL ?? "https://api.github.com"
+).replace(/\/+$/, "");
 const githubApiVersion = "2022-11-28";
 
 export class GitHubConflictError extends Error {

@@ -35,15 +35,15 @@ npm run build
 
 ## Environment variables
 
-| Variable               | Required                 | Purpose                                                                     |
-| ---------------------- | ------------------------ | --------------------------------------------------------------------------- |
-| `ADMIN_PASSWORD`       | Yes                      | The single password used to sign in to `/admin`.                            |
-| `ADMIN_SESSION_SECRET` | Yes                      | At least 32 characters; signs the eight-hour admin session cookie.          |
-| `GITHUB_TOKEN`         | Yes for saving/uploading | Fine-grained token used only by server routes to commit content and images. |
-| `GITHUB_REPO`          | Yes for saving/uploading | Repository in `owner/name` format.                                          |
-| `GITHUB_BRANCH`        | Yes for saving/uploading | Branch updated by the editor.                                               |
+| Variable               | Required                 | Purpose                                                                                  |
+| ---------------------- | ------------------------ | ---------------------------------------------------------------------------------------- |
+| `ADMIN_PASSWORD`       | Yes                      | The single password used to sign in to `/admin`.                                         |
+| `ADMIN_SESSION_SECRET` | Yes                      | At least 32 characters; signs the eight-hour admin session cookie.                       |
+| `GITHUB_TOKEN`         | Yes for saving/uploading | Fine-grained token used only by server routes to commit content and images.              |
+| `GITHUB_REPO`          | Yes for saving/uploading | Repository in `owner/name` format.                                                       |
+| `GITHUB_BRANCH`        | Yes for saving/uploading | Branch updated by the editor.                                                            |
 | `GITHUB_API_URL`       | No                       | GitHub Contents API root; defaults to `https://api.github.com` (tests use a local mock). |
-| `NEXT_PUBLIC_SITE_URL` | Recommended              | Canonical public origin used by metadata, robots, and sitemap.              |
+| `NEXT_PUBLIC_SITE_URL` | Recommended              | Canonical public origin used by metadata, robots, and sitemap.                           |
 
 The admin can be opened without GitHub variables, but content saves and image uploads return a configuration error until all three GitHub variables are set. GitHub credentials are read only on the server and are never sent to browser code.
 

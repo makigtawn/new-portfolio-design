@@ -26,9 +26,14 @@ async function profileEditor(page: Page) {
   return editor;
 }
 
-async function modifyProfile(page: Page, change: (profile: typeof siteContent.profile) => void) {
+async function modifyProfile(
+  page: Page,
+  change: (profile: typeof siteContent.profile) => void,
+) {
   const editor = await profileEditor(page);
-  const profile = JSON.parse(await editor.inputValue()) as typeof siteContent.profile;
+  const profile = JSON.parse(
+    await editor.inputValue(),
+  ) as typeof siteContent.profile;
   change(profile);
   await editor.fill(JSON.stringify(profile, null, 2));
   return editor;
@@ -54,8 +59,8 @@ test.describe("admin behavior against mock GitHub Contents API", () => {
 
     for (let attempt = 1; attempt <= 6; attempt += 1) {
       await password.fill(`wrong-${attempt}`);
-      const responsePromise = page.waitForResponse(
-        (response) => response.url().endsWith("/api/admin/login"),
+      const responsePromise = page.waitForResponse((response) =>
+        response.url().endsWith("/api/admin/login"),
       );
       await submit.click();
       const response = await responsePromise;
@@ -102,13 +107,19 @@ test.describe("admin behavior against mock GitHub Contents API", () => {
     const editor = await modifyProfile(page, (profile) => {
       profile.email = "not-an-email";
     });
-    await page.getByRole("button", { name: "Validate section" }).first().click();
+    await page
+      .getByRole("button", { name: "Validate section" })
+      .first()
+      .click();
     const alert = page.getByRole("alert");
     await expect(alert).toContainText(/email/i);
     await expect(editor).toHaveAttribute("aria-invalid", "true");
   });
 
-  test("saves valid content as a mock GitHub commit", async ({ page, request }) => {
+  test("saves valid content as a mock GitHub commit", async ({
+    page,
+    request,
+  }) => {
     await logIn(page);
     await modifyProfile(page, (profile) => {
       profile.proofPoint = "Changed proof point for mock commit.";
@@ -121,7 +132,9 @@ test.describe("admin behavior against mock GitHub Contents API", () => {
     ).json()) as Array<{ path: string; content: string }>;
     expect(commits).toHaveLength(1);
     expect(commits[0]?.path).toBe("content/site.json");
-    expect(commits[0]?.content).toContain("Changed proof point for mock commit.");
+    expect(commits[0]?.content).toContain(
+      "Changed proof point for mock commit.",
+    );
   });
 
   test("shows a clear 409 if GitHub rejects the SHA without overwriting", async ({
@@ -156,13 +169,21 @@ test.describe("admin behavior against mock GitHub Contents API", () => {
     });
     const jpeg = Buffer.from(jpegUrl.split(",")[1] ?? "", "base64");
     const input = page.getByLabel("Choose a JPEG, PNG, or WebP image");
-    await input.setInputFiles({ name: "pixel.jpg", mimeType: "image/jpeg", buffer: jpeg });
+    await input.setInputFiles({
+      name: "pixel.jpg",
+      mimeType: "image/jpeg",
+      buffer: jpeg,
+    });
     await expect(page.getByRole("status")).toContainText("Uploaded");
 
     const commitsBeforeInvalidFile = (await (
       await request.get("http://127.0.0.1:4010/__commits")
     ).json()) as Array<{ path: string }>;
-    expect(commitsBeforeInvalidFile.some((commit) => commit.path.startsWith("public/uploads/"))).toBe(true);
+    expect(
+      commitsBeforeInvalidFile.some((commit) =>
+        commit.path.startsWith("public/uploads/"),
+      ),
+    ).toBe(true);
 
     await input.setInputFiles({
       name: "program.jpg",
@@ -175,7 +196,9 @@ test.describe("admin behavior against mock GitHub Contents API", () => {
     const commitsAfterInvalidFile = await (
       await request.get("http://127.0.0.1:4010/__commits")
     ).json();
-    expect(commitsAfterInvalidFile).toHaveLength(commitsBeforeInvalidFile.length);
+    expect(commitsAfterInvalidFile).toHaveLength(
+      commitsBeforeInvalidFile.length,
+    );
   });
 
   test("rejects an oversized image and logs out", async ({ page, context }) => {

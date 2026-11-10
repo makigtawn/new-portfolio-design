@@ -81,7 +81,9 @@ const server = http.createServer(async (request, response) => {
   if (!url.pathname.startsWith(contentsPrefix)) {
     return reply(response, 404, { message: "Not Found" });
   }
-  const filePath = decodeURIComponent(url.pathname.slice(contentsPrefix.length));
+  const filePath = decodeURIComponent(
+    url.pathname.slice(contentsPrefix.length),
+  );
   if (request.method === "GET") {
     const file = files.get(filePath);
     if (!file) return reply(response, 404, { message: "Not Found" });
@@ -103,9 +105,10 @@ const server = http.createServer(async (request, response) => {
       if ((current && body.sha !== current.sha) || (!current && body.sha)) {
         return reply(response, 409, { message: "Conflict" });
       }
-      const content = Buffer.from(String(body.content ?? ""), "base64").toString(
-        "utf8",
-      );
+      const content = Buffer.from(
+        String(body.content ?? ""),
+        "base64",
+      ).toString("utf8");
       const sha = `mock-${commits.length + 1}`;
       files.set(filePath, { sha, content });
       commits.push({

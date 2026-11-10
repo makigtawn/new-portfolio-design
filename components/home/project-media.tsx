@@ -1,11 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import {
-  motion,
-  useScroll,
-  useTransform,
-} from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import type { Project } from "@/src/lib/content/schema";
 
