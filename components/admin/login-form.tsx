@@ -72,7 +72,7 @@ export function LoginForm() {
           aria-describedby={
             errors.password ? "admin-password-error" : undefined
           }
-          className="field-control"
+          className="field-control placeholder-muted"
         />
         {errors.password ? (
           <p id="admin-password-error" className="text-accent mt-2 text-sm">

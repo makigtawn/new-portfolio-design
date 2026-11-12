@@ -1,15 +1,18 @@
-const http = require("node:http");
-const fs = require("node:fs");
-const path = require("node:path");
+import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 
 const port = Number(process.env.MOCK_GITHUB_PORT ?? "4010");
 const repo = process.env.GITHUB_REPO ?? "test-owner/test-repo";
-const contentPath = path.resolve(process.cwd(), "content/site.json");
-const initialContent = fs.readFileSync(contentPath, "utf8");
-let files;
-let commits;
-let seedIndex;
-let conflictNextPut;
+const contentPath = resolve(process.cwd(), "content/site.json");
+const initialContent = readFileSync(contentPath, "utf8");
+type MockFile = { sha: string; content: string };
+type MockCommit = { path: string; message: string; sha: string; content: string };
+type MockBody = Record<string, unknown>;
+let files: Map<string, MockFile>;
+let commits: MockCommit[];
+let seedIndex: number;
+let conflictNextPut: boolean;
 
 function reset() {
   files = new Map([
@@ -20,16 +23,16 @@ function reset() {
   conflictNextPut = false;
 }
 
-function reply(response, status, body) {
+function reply(response: ServerResponse, status: number, body: unknown): void {
   response.writeHead(status, { "content-type": "application/json" });
   response.end(JSON.stringify(body));
 }
 
-function readJson(request) {
-  return new Promise((resolve, reject) => {
+function readJson(request: IncomingMessage): Promise<MockBody> {
+  return new Promise((resolveBody, reject) => {
     let raw = "";
     request.setEncoding("utf8");
-    request.on("data", (chunk) => {
+    request.on("data", (chunk: string) => {
       raw += chunk;
       if (raw.length > 6 * 1024 * 1024) {
         reject(new Error("Mock request body is too large."));
@@ -38,7 +41,12 @@ function readJson(request) {
     });
     request.on("end", () => {
       try {
-        resolve(JSON.parse(raw || "{}"));
+        const parsed: unknown = JSON.parse(raw || "{}");
+        if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) {
+          reject(new Error("Mock request body must be an object."));
+          return;
+        }
+        resolveBody(parsed as MockBody);
       } catch (error) {
         reject(error);
       }
@@ -49,7 +57,7 @@ function readJson(request) {
 
 reset();
 
-const server = http.createServer(async (request, response) => {
+const server = createServer(async (request: IncomingMessage, response: ServerResponse) => {
   const url = new URL(request.url ?? "/", `http://127.0.0.1:${port}`);
   if (url.pathname === "/__health") return reply(response, 200, { ok: true });
   if (url.pathname === "/__reset" && request.method === "POST") {

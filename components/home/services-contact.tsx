@@ -10,7 +10,7 @@ export function ServicesContact({ content }: { content: SiteContent }) {
     <>
       <section
         aria-labelledby="services-heading"
-        className="page-shell section-space"
+        className="section-space mx-auto w-[min(calc(100%-2.5rem),75rem)] md:w-[min(calc(100%-5rem),75rem)]"
       >
         <div className="grid gap-7 md:grid-cols-[minmax(12rem,0.55fr)_1fr]">
           <p className="eyebrow">04 / Ways to work together</p>
@@ -50,7 +50,7 @@ export function ServicesContact({ content }: { content: SiteContent }) {
         </div>
       </section>
       <footer id="contact" className="bg-ink text-paper scroll-mt-20">
-        <div className="page-shell py-16 md:py-24">
+        <div className="mx-auto w-[min(calc(100%-2.5rem),75rem)] py-16 md:w-[min(calc(100%-5rem),75rem)] md:py-24">
           <div className="grid gap-10 md:grid-cols-[1fr_15rem] md:items-end">
             <div>
               <p className="eyebrow text-paper/70">05 / Contact</p>
@@ -64,7 +64,7 @@ export function ServicesContact({ content }: { content: SiteContent }) {
               <a
                 className={cn(
                   buttonVariants(),
-                  "border-paper bg-paper text-ink hover:border-accent hover:bg-accent hover:text-paper mt-8",
+                  "border-paper bg-accent text-ink hover:border-accent hover:bg-accent hover:text-paper mt-8",
                 )}
                 href={`mailto:${content.profile.email}`}
               >

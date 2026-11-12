@@ -7,10 +7,10 @@
     "bio": "I work across the full stack to turn busy, manual workflows into clear tools people can rely on. I care about thoughtful details, simple architecture, and shipping work that earns trust.",
     "location": "Addis Ababa, Ethiopia",
     "availability": "Available for remote and hybrid projects",
-    "email": "hello@example.dev",
+    "email": "meklitgirmaw@gmail.com",
     "socials": [
-      { "label": "GitHub", "url": "https://github.com/your-handle" },
-      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/your-handle" }
+      { "label": "GitHub", "url": "https://github.com/makigtawn" },
+      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/makigtawn" }
     ],
     "photo": {
       "src": "/avatar-mark.svg",
@@ -75,7 +75,7 @@
     {
       "company": "Independent practice",
       "role": "Fullstack developer",
-      "period": "2024 — Present",
+      "period": "2024 - Present",
       "highlights": [
         "Build small web products from early requirements through implementation and handoff.",
         "Prototype data-heavy workflows and AI-assisted tools with clear human review points."
@@ -84,7 +84,7 @@
     {
       "company": "Project-based learning",
       "role": "Software developer",
-      "period": "2022 — 2024",
+      "period": "2022 - 2024",
       "highlights": [
         "Strengthened core programming skills through focused C++ and fullstack projects.",
         "Practiced breaking ambiguous product needs into tested, maintainable pieces."
@@ -114,7 +114,7 @@
     }
   ],
   "seo": {
-    "siteTitle": "Meklit Girmaw — Fullstack Developer",
+    "siteTitle": "Meklit Girmaw - Fullstack Developer",
     "description": "Fullstack development for thoughtful teams, with a focus on useful workflows, clear interfaces, and dependable systems.",
     "ogImage": {
       "src": "/opengraph-image",

@@ -132,7 +132,6 @@ function SectionEditor({ section, value, onChange }: SectionEditorProps) {
 
   return (
     <form
-      className="admin-prose"
       onSubmit={handleSubmit(
         () => setValidated(true),
         () => setValidated(false),
@@ -148,7 +147,7 @@ function SectionEditor({ section, value, onChange }: SectionEditorProps) {
       <textarea
         {...field}
         id={`section-${section.key}`}
-        className="field-control min-h-64"
+        className="field-control placeholder-muted admin-textarea min-h-64"
         spellCheck={false}
         aria-invalid={Boolean(errors.json)}
         aria-describedby={
@@ -348,7 +347,7 @@ export function AdminEditor({
   return (
     <main
       id="main-content"
-      className="page-shell min-h-[80vh] pt-10 pb-24 md:pt-16"
+      className="mx-auto min-h-[80vh] w-[min(calc(100%-2.5rem),75rem)] pt-10 pb-24 md:w-[min(calc(100%-5rem),75rem)] md:pt-16"
     >
       <div className="border-line flex flex-wrap items-start justify-between gap-6 border-b pb-7">
         <div>

@@ -5,7 +5,7 @@ export function Experience({ content }: { content: SiteContent }) {
   return (
     <section
       aria-labelledby="experience-heading"
-      className="page-shell section-space"
+      className="section-space mx-auto w-[min(calc(100%-2.5rem),75rem)] md:w-[min(calc(100%-5rem),75rem)]"
     >
       <div className="grid gap-7 md:grid-cols-[minmax(12rem,0.55fr)_1fr]">
         <p className="eyebrow">03 / Experience</p>

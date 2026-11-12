@@ -17,13 +17,13 @@ export function StackMarquee() {
       className="marquee border-line overflow-hidden border-y py-5"
       tabIndex={0}
     >
-      <div className="marquee-track gap-8 pr-8 motion-reduce:transform-none">
+      <div className="marquee-track gap-8 pr-8 motion-reduce:animate-none">
         {[...skills, ...skills].map((skill, index) => (
           <span
             aria-hidden={index >= skills.length}
             data-duplicate={index >= skills.length || undefined}
             key={`${skill}-${index}`}
-            className="marquee-skill text-muted text-sm whitespace-nowrap"
+            className={`marquee-skill text-muted text-sm whitespace-nowrap ${index >= skills.length ? "motion-reduce:hidden" : ""}`}
           >
             {skill}
             <span aria-hidden="true" className="text-accent ml-8">

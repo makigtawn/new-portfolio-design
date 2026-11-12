@@ -25,7 +25,7 @@ export function ProjectMedia({ cover }: { cover: Project["cover"] }) {
     <motion.div
       ref={ref}
       style={mounted ? { opacity, scale } : undefined}
-      className="project-media-initial border-line bg-wash relative overflow-hidden rounded-md border"
+      className="project-media-initial border-line bg-wash relative overflow-hidden rounded-md border motion-reduce:!scale-100 motion-reduce:!opacity-100"
     >
       <Image
         src={cover.src}

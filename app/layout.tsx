@@ -42,11 +42,8 @@ export function generateMetadata(): Metadata {
 }
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F6F3EE" },
-    { media: "(prefers-color-scheme: dark)", color: "#1B1A17" },
-  ],
-  colorScheme: "light dark",
+  themeColor: "#F6F3EE",
+  colorScheme: "light",
 };
 
 export default function RootLayout({
@@ -55,7 +52,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={lexend.variable}>
       <body>
-        <a className="skip-link" href="#main-content">
+        <a className="skip-link focus:translate-y-0" href="#main-content">
           Skip to content
         </a>
         <ReadingProgress />

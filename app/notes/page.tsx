@@ -17,12 +17,12 @@ export default function NotesPage() {
   return (
     <main
       id="main-content"
-      className="page-shell min-h-[70vh] pt-16 pb-24 md:pt-24"
+      className="mx-auto min-h-[70vh] w-[min(calc(100%-2.5rem),75rem)] pt-16 pb-24 md:w-[min(calc(100%-5rem),75rem)] md:pt-24"
     >
       <p className="eyebrow">Writing / Field notes</p>
       <RevealHeading
         id="notes-heading"
-        className="display-title mt-6 max-w-4xl"
+        className="mt-6 max-w-4xl text-[clamp(2.75rem,5.5vw,5.25rem)] leading-[1.1] font-normal tracking-[-0.07em]"
         as="h1"
       >
         Notes from the work.

@@ -34,7 +34,7 @@ export default async function NotePage({ params }: PageProps) {
   return (
     <main
       id="main-content"
-      className="page-shell min-h-[70vh] pt-12 pb-24 md:pt-20"
+      className="mx-auto min-h-[70vh] w-[min(calc(100%-2.5rem),75rem)] pt-12 pb-24 md:w-[min(calc(100%-5rem),75rem)] md:pt-20"
     >
       <Link
         href="/notes"

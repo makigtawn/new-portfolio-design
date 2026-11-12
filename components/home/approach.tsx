@@ -21,7 +21,7 @@ const steps = [
 export function Approach({ bio }: { bio: string }) {
   return (
     <section id="about" aria-labelledby="approach-heading" className="bg-wash">
-      <div className="page-shell section-space">
+      <div className="section-space mx-auto w-[min(calc(100%-2.5rem),75rem)] md:w-[min(calc(100%-5rem),75rem)]">
         <div className="grid gap-7 md:grid-cols-[minmax(12rem,0.55fr)_1fr]">
           <p className="eyebrow">02 / Approach</p>
           <div>

@@ -43,7 +43,10 @@ export default async function ProjectPage({ params }: PageProps) {
   const next = content.projects[(index + 1) % content.projects.length];
 
   return (
-    <main id="main-content" className="page-shell pb-24">
+    <main
+      id="main-content"
+      className="mx-auto w-[min(calc(100%-2.5rem),75rem)] pb-24 md:w-[min(calc(100%-5rem),75rem)]"
+    >
       <div className="pt-12 md:pt-20">
         <Link
           href="/#work"
@@ -55,7 +58,9 @@ export default async function ProjectPage({ params }: PageProps) {
         <div className="mt-12 grid gap-8 md:mt-20 md:grid-cols-[1fr_17rem] md:items-end">
           <div>
             <p className="eyebrow">Case study · {project.year}</p>
-            <h1 className="display-title mt-5 max-w-4xl">{project.title}</h1>
+            <h1 className="mt-5 max-w-4xl text-[clamp(2.75rem,5.5vw,5.25rem)] leading-[1.1] font-normal tracking-[-0.07em]">
+              {project.title}
+            </h1>
           </div>
           <p className="text-muted max-w-sm">{project.summary}</p>
         </div>

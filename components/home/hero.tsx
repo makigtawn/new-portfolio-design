@@ -10,24 +10,32 @@ export function Hero({ content }: { content: SiteContent }) {
   return (
     <section
       aria-labelledby="hero-title"
-      className="page-shell grid min-h-[calc(100svh-5rem)] items-center gap-12 py-20 md:grid-cols-[minmax(0,1fr)_15rem] md:gap-16 md:py-28"
+      className="mx-auto grid min-h-[calc(100svh-5rem)] w-[min(calc(100%-2.5rem),75rem)] items-center gap-12 py-20 md:w-[min(calc(100%-5rem),75rem)] md:grid-cols-[minmax(0,1fr)_15rem] md:gap-16 md:py-28"
     >
       <div className="max-w-[59rem]">
-        <p className="eyebrow hero-eyebrow">
+        <p className="eyebrow animate-[hero-follow_650ms_cubic-bezier(0.22,1,0.36,1)_90ms_both] motion-reduce:animate-none">
           {content.profile.role} <span aria-hidden="true">·</span>{" "}
           {content.profile.location}
         </p>
-        <h1 id="hero-title" className="display-title mt-8">
+        <h1
+          id="hero-title"
+          className="mt-8 text-[clamp(2.75rem,5.5vw,5.25rem)] leading-[1.1] font-normal tracking-[-0.07em]"
+        >
           {lines.map((line, index) => (
-            <span className="hero-line" key={`${index}-${line}`}>
-              <span>{line}</span>
+            <span
+              className={`hero-line ${index === 1 ? "[&>span]:[animation-delay:90ms]" : ""}`}
+              key={`${index}-${line}`}
+            >
+              <span className="block animate-[hero-rise_650ms_cubic-bezier(0.22,1,0.36,1)_both] motion-reduce:animate-none">
+                {line}
+              </span>
             </span>
           ))}
         </h1>
-        <p className="hero-subline text-muted mt-8 max-w-[43rem] text-lg leading-relaxed md:text-xl">
+        <p className="text-muted mt-8 max-w-[43rem] animate-[hero-follow_650ms_cubic-bezier(0.22,1,0.36,1)_240ms_both] text-lg leading-relaxed motion-reduce:animate-none md:text-xl">
           {content.hero.subline}
         </p>
-        <div className="hero-ctas mt-8 flex flex-wrap items-center gap-3">
+        <div className="mt-8 flex animate-[hero-follow_650ms_cubic-bezier(0.22,1,0.36,1)_340ms_both] flex-wrap items-center gap-3 motion-reduce:animate-none">
           <Link
             className={buttonVariants()}
             href={content.hero.primaryCta.href}
@@ -43,7 +51,7 @@ export function Hero({ content }: { content: SiteContent }) {
           </Link>
         </div>
       </div>
-      <aside className="hero-aside flex items-center gap-4 md:block md:self-end md:pb-2">
+      <aside className="flex animate-[hero-follow_650ms_cubic-bezier(0.22,1,0.36,1)_420ms_both] items-center gap-4 motion-reduce:animate-none md:block md:self-end md:pb-2">
         <Image
           src={content.profile.photo.src}
           alt={content.profile.photo.alt}

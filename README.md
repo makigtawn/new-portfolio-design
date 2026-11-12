@@ -1,4 +1,4 @@
-# Meklit Girmaw — Fullstack Developer
+# Meklit Girmaw - Fullstack Developer
 
 A responsive, editorial portfolio built with the Next.js App Router. Project and profile content lives in `content/site.json`, is validated with Zod during page generation, and is editable through the protected admin area.
 

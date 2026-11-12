@@ -11,7 +11,7 @@ export function SelectedWork({ content }: { content: SiteContent }) {
     <section
       id="work"
       aria-labelledby="work-heading"
-      className="page-shell section-space scroll-mt-20"
+      className="section-space mx-auto w-[min(calc(100%-2.5rem),75rem)] scroll-mt-20 md:w-[min(calc(100%-5rem),75rem)]"
     >
       <div className="grid gap-6 md:grid-cols-[minmax(12rem,0.55fr)_1fr] md:items-end">
         <p className="eyebrow">01 / Selected work</p>
