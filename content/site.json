@@ -5,23 +5,35 @@
     "role": "Fullstack developer",
     "proofPoint": "A practical mix of product thinking, careful interfaces, and dependable systems.",
     "bio": "I work across the full stack to turn busy, manual workflows into clear tools people can rely on. I care about thoughtful details, simple architecture, and shipping work that earns trust.",
-    "location": "Addis Ababa, Ethiopia",
+    "location": "Bahirdar, Ethiopia",
     "availability": "Available for remote and hybrid projects",
-    "email": "hello@example.dev",
+    "email": "meklitgirmaw@gmail.com",
     "socials": [
-      { "label": "GitHub", "url": "https://github.com/your-handle" },
-      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/your-handle" }
+      {
+        "label": "GitHub",
+        "url": "https://github.com/makigtawn"
+      },
+      {
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/in/makigtawn"
+      }
     ],
     "photo": {
       "src": "/avatar-mark.svg",
-      "alt": "Monogram portrait placeholder for Meklit Girmaw"
+      "alt": "Meklit's picture"
     }
   },
   "hero": {
     "headline": "I build useful software\nfor everyday work.",
     "subline": "Fullstack development for thoughtful teams, from the first sketch to the last reliable edge case.",
-    "primaryCta": { "label": "Explore selected work", "href": "#work" },
-    "secondaryCta": { "label": "Start a conversation", "href": "#contact" }
+    "primaryCta": {
+      "label": "Explore selected work",
+      "href": "#work"
+    },
+    "secondaryCta": {
+      "label": "Start a conversation",
+      "href": "#contact"
+    }
   },
   "projects": [
     {
@@ -29,7 +41,12 @@
       "title": "Clinic Queue Manager",
       "summary": "A queue management prototype that gives clinic staff a clear view of patient flow during busy hours.",
       "role": "Backend developer · data structures and algorithms",
-      "stack": ["C++", "STL", "Data structures", "Algorithms"],
+      "stack": [
+        "C++",
+        "STL",
+        "Data structures",
+        "Algorithms"
+      ],
       "year": "2025",
       "problem": "Paper lists and ad hoc updates make it difficult for a small clinic team to keep an accurate order when arrivals bunch together or urgent cases need attention.",
       "approach": "Modeled arrivals as explicit queue entries, then separated standard FIFO handling from priority insertions. Kept the operations small and measurable so each data structure choice could be reasoned about and tested.",
@@ -52,7 +69,12 @@
       "title": "Social Media Agent",
       "summary": "An AI-assisted workflow for turning a brief into a reviewed, platform-ready draft using the Gemini API.",
       "role": "Fullstack developer · AI integration",
-      "stack": ["TypeScript", "Gemini API", "Next.js", "Zod"],
+      "stack": [
+        "TypeScript",
+        "Gemini API",
+        "Next.js",
+        "Zod"
+      ],
       "year": "2025",
       "problem": "Preparing a consistent set of social drafts from a short campaign brief often means repeating the same research, formatting, and review work across channels.",
       "approach": "Turned the brief into a validated structured input, asked the Gemini API for bounded draft options, then returned a typed response into a human review queue. Kept publishing outside the prototype so generated content could not be posted without approval.",
