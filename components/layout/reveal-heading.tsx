@@ -15,16 +15,14 @@ export function RevealHeading({
 }) {
   const Heading = as;
   const ref = useRef<HTMLHeadingElement>(null);
-  const [mounted, setMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
 
-    setMounted(true);
     if (!("IntersectionObserver" in window)) {
-      setIsVisible(true);
+      requestAnimationFrame(() => setIsVisible(true));
       return;
     }
 
@@ -41,11 +39,7 @@ export function RevealHeading({
     return () => observer.disconnect();
   }, []);
 
-  const visibility = mounted
-    ? isVisible
-      ? "reveal-visible"
-      : "reveal-ready"
-    : "";
+  const visibility = isVisible ? "reveal-visible" : "reveal-ready";
   return (
     <Heading
       id={id}

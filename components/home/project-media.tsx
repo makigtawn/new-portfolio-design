@@ -2,12 +2,11 @@
 
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import type { Project } from "@/src/lib/content/schema";
 
 export function ProjectMedia({ cover }: { cover: Project["cover"] }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [mounted, setMounted] = useState(false);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -19,12 +18,10 @@ export function ProjectMedia({ cover }: { cover: Project["cover"] }) {
   );
   const scale = useTransform(scrollYProgress, [0, 1], [0.97, 1]);
 
-  useEffect(() => setMounted(true), []);
-
   return (
     <motion.div
       ref={ref}
-      style={mounted ? { opacity, scale } : undefined}
+      style={{ opacity, scale }}
       className="project-media-initial border-line bg-wash relative overflow-hidden rounded-md border motion-reduce:!scale-100 motion-reduce:!opacity-100"
     >
       <Image

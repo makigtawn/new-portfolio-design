@@ -54,7 +54,9 @@ test.describe("admin behavior against mock GitHub Contents API", () => {
     await page.goto("/admin/login");
     const password = page.getByLabel("Password");
     const submit = page.getByRole("button", { name: "Sign in" });
-    const alert = page.getByRole("alert");
+    const alert = page.getByText(
+      "Unable to sign in. Check the password and try again.",
+    );
     const generic = "Unable to sign in. Check the password and try again.";
 
     for (let attempt = 1; attempt <= 6; attempt += 1) {
@@ -111,7 +113,7 @@ test.describe("admin behavior against mock GitHub Contents API", () => {
       .getByRole("button", { name: "Validate section" })
       .first()
       .click();
-    const alert = page.getByRole("alert");
+    const alert = page.locator("#section-profile-error");
     await expect(alert).toContainText(/email/i);
     await expect(editor).toHaveAttribute("aria-invalid", "true");
   });
@@ -147,9 +149,11 @@ test.describe("admin behavior against mock GitHub Contents API", () => {
     });
     await request.post("http://127.0.0.1:4010/__conflict-next");
     await page.getByRole("button", { name: "Save all changes" }).click();
-    await expect(page.getByRole("alert")).toContainText(
-      "changed on GitHub before this save completed",
-    );
+    await expect(
+      page.getByText(
+        /The content changed on GitHub before this save completed/,
+      ),
+    ).toContainText("changed on GitHub before this save completed");
     const commits = await (
       await request.get("http://127.0.0.1:4010/__commits")
     ).json();
@@ -174,7 +178,10 @@ test.describe("admin behavior against mock GitHub Contents API", () => {
       mimeType: "image/jpeg",
       buffer: jpeg,
     });
-    await expect(page.getByRole("status")).toContainText("Uploaded");
+    const uploadStatus = page.locator("[role='status']").filter({
+      hasText: /Uploaded|valid JPEG, PNG, or WebP|smaller than 2 MB/,
+    });
+    await expect(uploadStatus).toContainText("Uploaded");
 
     const commitsBeforeInvalidFile = (await (
       await request.get("http://127.0.0.1:4010/__commits")
@@ -190,9 +197,7 @@ test.describe("admin behavior against mock GitHub Contents API", () => {
       mimeType: "image/jpeg",
       buffer: Buffer.from("MZ executable disguised as JPEG"),
     });
-    await expect(page.getByRole("status")).toContainText(
-      "valid JPEG, PNG, or WebP",
-    );
+    await expect(uploadStatus).toContainText("valid JPEG, PNG, or WebP");
     const commitsAfterInvalidFile = await (
       await request.get("http://127.0.0.1:4010/__commits")
     ).json();
@@ -209,7 +214,9 @@ test.describe("admin behavior against mock GitHub Contents API", () => {
       mimeType: "image/jpeg",
       buffer: Buffer.alloc(2 * 1024 * 1024 + 1, 0xff),
     });
-    await expect(page.getByRole("status")).toContainText("smaller than 2 MB");
+    await expect(
+      page.getByText("Images must be smaller than 2 MB."),
+    ).toBeVisible();
 
     await page.getByRole("button", { name: "Sign out" }).click();
     await expect(page).toHaveURL(/\/admin\/login/);

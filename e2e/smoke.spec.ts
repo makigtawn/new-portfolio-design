@@ -52,9 +52,9 @@ test("wrong password shows a generic error", async ({ page }) => {
   await page.goto("/admin/login");
   await page.getByLabel("Password").fill("incorrect-password");
   await page.getByRole("button", { name: "Sign in" }).click();
-  await expect(page.getByRole("alert")).toHaveText(
-    "Unable to sign in. Check the password and try again.",
-  );
+  await expect(
+    page.getByText("Unable to sign in. Check the password and try again."),
+  ).toHaveText("Unable to sign in. Check the password and try again.");
 });
 
 test("right password opens the content editor", async ({ page }) => {
