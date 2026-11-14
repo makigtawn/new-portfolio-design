@@ -92,7 +92,7 @@ test.describe("admin behavior against mock GitHub Contents API", () => {
     });
     let dialogMessage = "";
     page.once("dialog", async (dialog) => {
-    dialogMessage = dialog.message();
+      dialogMessage = dialog.message();
       await dialog.dismiss();
     });
     await page.getByRole("link", { name: "Preview public site" }).click();

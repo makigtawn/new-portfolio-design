@@ -11,7 +11,6 @@
     "socials": [
       { "label": "GitHub", "url": "https://github.com/makigtawn" },
       { "label": "LinkedIn", "url": "https://www.linkedin.com/in/makigtawn" }
-
     ],
     "photo": {
       "src": "/avatar-mark.svg",
@@ -36,12 +35,7 @@
       "title": "Clinic Queue Manager",
       "summary": "A queue management prototype that gives clinic staff a clear view of patient flow during busy hours.",
       "role": "Backend developer · data structures and algorithms",
-      "stack": [
-        "C++",
-        "STL",
-        "Data structures",
-        "Algorithms"
-      ],
+      "stack": ["C++", "STL", "Data structures", "Algorithms"],
       "year": "2025",
       "problem": "Paper lists and ad hoc updates make it difficult for a small clinic team to keep an accurate order when arrivals bunch together or urgent cases need attention.",
       "approach": "Modeled arrivals as explicit queue entries, then separated standard FIFO handling from priority insertions. Kept the operations small and measurable so each data structure choice could be reasoned about and tested.",
@@ -64,12 +58,7 @@
       "title": "Social Media Agent",
       "summary": "An AI-assisted workflow for turning a brief into a reviewed, platform-ready draft using the Gemini API.",
       "role": "Fullstack developer · AI integration",
-      "stack": [
-        "TypeScript",
-        "Gemini API",
-        "Next.js",
-        "Zod"
-      ],
+      "stack": ["TypeScript", "Gemini API", "Next.js", "Zod"],
       "year": "2025",
       "problem": "Preparing a consistent set of social drafts from a short campaign brief often means repeating the same research, formatting, and review work across channels.",
       "approach": "Turned the brief into a validated structured input, asked the Gemini API for bounded draft options, then returned a typed response into a human review queue. Kept publishing outside the prototype so generated content could not be posted without approval.",
