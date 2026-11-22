@@ -35,3 +35,14 @@ jobs:
         run: cp .env.test.example .env.test
       - name: End-to-end smoke tests
         run: npm run test:e2e
+        env:
+          ADMIN_PASSWORD: portfolio-e2e-test-password
+          ADMIN_SESSION_SECRET: local-e2e-only-secret-at-least-32-characters
+          GITHUB_TOKEN: test-token
+          GITHUB_REPO: test-owner/test-repo
+          GITHUB_BRANCH: main
+          GITHUB_API_URL: http://127.0.0.1:4010
+          PORT: 3020
+          PLAYWRIGHT_SERVER_MODE: production
+          PLAYWRIGHT_BASE_URL: http://localhost:3020
+          NEXT_PUBLIC_SITE_URL: http://localhost:3020

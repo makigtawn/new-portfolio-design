@@ -49,7 +49,8 @@ test.describe("hydration and Motion console regression", () => {
       const messages = watchConsole(page);
       await page.goto("/");
       await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-      const revealHeadings = page.locator(".reveal-heading");
+      // RevealHeading applies the section-title class; it does not emit a reveal-heading class.
+      const revealHeadings = page.locator(".section-title");
       await expect(revealHeadings).toHaveCount(4);
       const headingStates = await revealHeadings.evaluateAll((nodes) =>
         nodes.map((node) => ({

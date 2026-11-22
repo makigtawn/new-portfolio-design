@@ -59,6 +59,7 @@
     position: relative;
     scroll-behavior: auto;
     background: var(--color-paper);
+    color-scheme: light;
   }
   body {
     margin: 0;

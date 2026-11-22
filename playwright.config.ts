@@ -18,7 +18,7 @@ process.env.ADMIN_SESSION_SECRET = adminSessionSecret;
 process.env.GITHUB_API_URL ??= "http://127.0.0.1:4010";
 
 const serverHost = "127.0.0.1";
-const appUrl = process.env.PLAYWRIGHT_BASE_URL ?? `http://127.0.0.1:${port}`;
+const appUrl = process.env.PLAYWRIGHT_BASE_URL ?? `http://localhost:${port}`;
 const serverCommand =
   mode === "production"
     ? `npm run start -- --hostname ${serverHost} --port ${port}`

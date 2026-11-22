@@ -16,6 +16,11 @@ async function logIn(page: Page) {
   await page.getByLabel("Password").fill(process.env.ADMIN_PASSWORD ?? "");
   await page.getByRole("button", { name: "Sign in" }).click();
   await expect(page).toHaveURL(/\/admin$/);
+  const sessionCookie = (await page.context().cookies()).find(
+    (cookie) => cookie.name === "portfolio_admin_session",
+  );
+  expect(sessionCookie).toBeDefined();
+  expect(sessionCookie?.secure).toBe(true);
 }
 
 async function profileEditor(page: Page) {
@@ -209,14 +214,26 @@ test.describe("admin behavior against mock GitHub Contents API", () => {
   test("rejects an oversized image and logs out", async ({ page, context }) => {
     await logIn(page);
     const input = page.getByLabel("Choose a JPEG, PNG, or WebP image");
+    const uploadResponse = page.waitForResponse(
+      (response) =>
+        response.url().endsWith("/api/admin/upload") &&
+        response.request().method() === "POST",
+    );
     await input.setInputFiles({
       name: "too-large.jpg",
       mimeType: "image/jpeg",
       buffer: Buffer.alloc(2 * 1024 * 1024 + 1, 0xff),
     });
+    expect((await uploadResponse).status()).toBe(413);
     await expect(
       page.getByText("Images must be smaller than 2 MB."),
     ).toBeVisible();
+    await expect(page).toHaveURL(/\/admin$/);
+    expect(
+      (await context.cookies()).some(
+        (item) => item.name === "portfolio_admin_session",
+      ),
+    ).toBe(true);
 
     await page.getByRole("button", { name: "Sign out" }).click();
     await expect(page).toHaveURL(/\/admin\/login/);
