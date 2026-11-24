@@ -47,9 +47,6 @@ export function SelectedWork({ content }: { content: SiteContent }) {
               </li>
             ))}
           </ol>
-          <p className="text-muted mt-8 max-w-64 text-sm leading-relaxed">
-            Titles stay in view as each project moves through the work area.
-          </p>
         </aside>
         <div className="space-y-16 md:space-y-24">
           {projects.map((project) => (

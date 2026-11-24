@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MobileNavigation } from "@/components/layout/mobile-navigation";
 import { getSiteContent } from "@/src/lib/content/load";
 
 export function SiteHeader() {
@@ -10,7 +11,7 @@ export function SiteHeader() {
       </Link>
       <nav
         aria-label="Main navigation"
-        className="text-muted flex items-center gap-5 text-sm"
+        className="text-muted hidden items-center gap-5 text-sm md:flex"
       >
         <Link className="hover:text-ink" href="/#work">
           Work
@@ -27,6 +28,7 @@ export function SiteHeader() {
           Contact
         </Link>
       </nav>
+      <MobileNavigation hasNotes={Boolean(content.notes?.length)} />
     </header>
   );
 }

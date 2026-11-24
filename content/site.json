@@ -1,31 +1,45 @@
 {
-  "_comment": "PLACEHOLDER CONTENT: Replace these sample details, links, and unverified demo metrics before publishing.",
+  "_comment": "PLACEHOLDER CONTENT: Replace sample details, links, and unverified project metrics before publishing.",
   "profile": {
     "name": "Meklit Girmaw",
-    "role": "Fullstack developer",
-    "proofPoint": "A practical mix of product thinking, careful interfaces, and dependable systems.",
-    "bio": "I work across the full stack to turn busy, manual workflows into clear tools people can rely on. I care about thoughtful details, simple architecture, and shipping work that earns trust.",
-    "location": "Bahirdar, Ethiopia",
-    "availability": "Available for remote and hybrid projects",
+    "role": "Full-stack developer",
+    "proofPoint": "I enjoy building useful things, solving real problems, and making software easier to use.",
+    "bio": "I'm a full-stack developer who enjoys working on both the frontend and backend. I like turning ideas into working products, figuring out how things fit together, and making sure the final result is actually useful. I'm also exploring AI-powered tools and ways to make everyday workflows easier.",
+    "location": "Bahir Dar, Ethiopia",
+    "availability": "Open to remote and hybrid opportunities",
     "email": "meklitgirmaw@gmail.com",
     "socials": [
-      { "label": "GitHub", "url": "https://github.com/makigtawn" },
-      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/makigtawn" }
+      {
+        "label": "GitHub",
+        "url": "https://github.com/makigtawn"
+      },
+      {
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/in/makigtawn"
+      },
+      {
+        "label": "X",
+        "url": "https://x.com/makigtawn"
+      },
+      {
+        "label": "Discord",
+        "url": "https://discord.com/users/makigtawn"
+      }
     ],
     "photo": {
       "src": "/avatar-mark.svg",
-      "alt": "Meklit's picture"
+      "alt": "Meklit's profile picture"
     }
   },
   "hero": {
-    "headline": "I build useful software\nfor everyday work.",
-    "subline": "Fullstack development for thoughtful teams, from the first sketch to the last reliable edge case.",
+    "headline": "I build software\nthat solves real problems.",
+    "subline": "From frontend interfaces to backend systems, I enjoy figuring things out and turning ideas into working products.",
     "primaryCta": {
-      "label": "Explore selected work",
+      "label": "See what I've built",
       "href": "#work"
     },
     "secondaryCta": {
-      "label": "Start a conversation",
+      "label": "Let's talk",
       "href": "#contact"
     }
   },
@@ -33,14 +47,19 @@
     {
       "slug": "clinic-queue-manager",
       "title": "Clinic Queue Manager",
-      "summary": "A queue management prototype that gives clinic staff a clear view of patient flow during busy hours.",
-      "role": "Backend developer · data structures and algorithms",
-      "stack": ["C++", "STL", "Data structures", "Algorithms"],
+      "summary": "A simple queue management prototype designed to help clinic staff keep track of patients during busy hours.",
+      "role": "Backend developer · Data structures and algorithms",
+      "stack": [
+        "C++",
+        "STL",
+        "Data structures",
+        "Algorithms"
+      ],
       "year": "2025",
-      "problem": "Paper lists and ad hoc updates make it difficult for a small clinic team to keep an accurate order when arrivals bunch together or urgent cases need attention.",
-      "approach": "Modeled arrivals as explicit queue entries, then separated standard FIFO handling from priority insertions. Kept the operations small and measurable so each data structure choice could be reasoned about and tested.",
-      "outcome": "Built a lightweight C++ prototype around an explicit queue model, with operations for check-in, priority handling, lookup, and completion. The project focused on predictable behavior and clear complexity trade-offs.",
-      "metric": "Placeholder metric to replace after testing: target 20% shorter average wait time.",
+      "problem": "Managing patient queues with paper lists can get confusing, especially when several patients arrive at once or someone needs urgent attention.",
+      "approach": "I used queue data structures to organize patient arrivals and added priority handling for urgent cases. I wanted to keep the logic simple and understand why each data structure was the right choice.",
+      "outcome": "Built a C++ prototype with features for patient check-in, priority handling, searching, and completing appointments. It was a good way to practice data structures and understand how they work in a practical scenario.",
+      "metric": "Evaluation pending: target 20% shorter average waiting time.",
       "cover": {
         "src": "/work/clinic-queue.svg",
         "alt": "Queue dashboard concept showing patient sequence, wait time, and priority status"
@@ -56,14 +75,19 @@
     {
       "slug": "social-media-agent",
       "title": "Social Media Agent",
-      "summary": "An AI-assisted workflow for turning a brief into a reviewed, platform-ready draft using the Gemini API.",
-      "role": "Fullstack developer · AI integration",
-      "stack": ["TypeScript", "Gemini API", "Next.js", "Zod"],
+      "summary": "An AI-powered tool that helps turn campaign ideas into social media drafts using the Gemini API.",
+      "role": "Full-stack developer · AI integration",
+      "stack": [
+        "TypeScript",
+        "Gemini API",
+        "Next.js",
+        "Zod"
+      ],
       "year": "2025",
-      "problem": "Preparing a consistent set of social drafts from a short campaign brief often means repeating the same research, formatting, and review work across channels.",
-      "approach": "Turned the brief into a validated structured input, asked the Gemini API for bounded draft options, then returned a typed response into a human review queue. Kept publishing outside the prototype so generated content could not be posted without approval.",
-      "outcome": "Prototyped an agent workflow that accepts a brief, produces structured draft options, and leaves a human review step before anything can be published. Input and output shapes are validated so incomplete results are easy to catch.",
-      "metric": "Placeholder evaluation to replace: compare review time across 10 representative briefs.",
+      "problem": "Creating social media content for different platforms takes time. Teams often have to repeat the same research, writing, and formatting work for every campaign.",
+      "approach": "I built a workflow that takes a campaign brief, validates the input, and uses the Gemini API to generate structured content suggestions. I also included a human review step so generated content can be checked and edited before publishing.",
+      "outcome": "Built a prototype that generates multiple content drafts from a single brief and sends them through a review process. The idea is to make content creation easier while keeping people involved in the final decisions.",
+      "metric": "Evaluation pending: compare content review time across 10 representative campaign briefs.",
       "cover": {
         "src": "/work/social-agent.svg",
         "alt": "Campaign workspace concept with a brief and three reviewed draft options"
@@ -80,11 +104,11 @@
   "experience": [
     {
       "company": "Independent practice",
-      "role": "Fullstack developer",
+      "role": "Full-stack developer",
       "period": "2024 - Present",
       "highlights": [
-        "Build small web products from early requirements through implementation and handoff.",
-        "Prototype data-heavy workflows and AI-assisted tools with clear human review points."
+        "Working on personal projects, from planning features to building and testing them.",
+        "Exploring AI integrations and building tools that solve practical workflow problems."
       ]
     },
     {
@@ -92,39 +116,39 @@
       "role": "Software developer",
       "period": "2022 - 2024",
       "highlights": [
-        "Strengthened core programming skills through focused C++ and fullstack projects.",
-        "Practiced breaking ambiguous product needs into tested, maintainable pieces."
+        "Practiced programming through C++ assignments and full-stack development projects.",
+        "Learned to break down problems and build solutions one piece at a time."
       ]
     }
   ],
   "services": [
     {
-      "title": "Fullstack product builds",
-      "description": "A clear, responsive web product from data model to polished interface."
+      "title": "Full-stack development",
+      "description": "Building web applications, from backend logic and databases to frontend interfaces."
     },
     {
-      "title": "Workflow and AI prototypes",
-      "description": "Focused experiments that connect real processes to useful, reviewable automation."
+      "title": "AI-powered tools",
+      "description": "Experimenting with AI integrations to automate repetitive tasks and improve existing workflows."
     },
     {
-      "title": "Frontend refinement",
-      "description": "Accessible, fast interfaces with careful interaction and content hierarchy."
+      "title": "Frontend development",
+      "description": "Creating responsive interfaces that are easy to navigate and comfortable to use."
     }
   ],
   "notes": [
     {
-      "title": "Make the human review step part of the design",
+      "title": "AI still needs a human in the loop",
       "date": "2025-04-12",
-      "excerpt": "A useful AI workflow makes it easy to inspect, correct, and trust the work before it moves forward.",
-      "body": "Automation is most helpful when it reduces repeated effort without making decisions invisible. In the Social Media Agent prototype, generated drafts remain drafts: people can inspect structure, adjust tone, and choose what moves forward. That review step is part of the product, not a patch added at the end.\n\nThe same principle applies to internal tools. Make state visible, give people a clear way to correct mistakes, and measure the work that matters before claiming a result."
+      "excerpt": "Generating content is one thing. Making sure it's actually useful is another.",
+      "body": "One thing I've been thinking about while building AI tools is how much control people should have over the output.\n\nFor example, in my Social Media Agent project, I didn't want generated content to go straight to publishing. People should be able to read it, make changes, and decide whether it's good enough. That review step isn't just an extra feature. It's an important part of the workflow.\n\nI think the same idea applies to other internal tools too. Automation should make work easier, not make people lose control of what's happening."
     }
   ],
   "seo": {
-    "siteTitle": "Meklit Girmaw - Fullstack Developer",
-    "description": "Fullstack development for thoughtful teams, with a focus on useful workflows, clear interfaces, and dependable systems.",
+    "siteTitle": "Meklit Girmaw | Full-stack Developer",
+    "description": "Full-stack developer building web applications, useful workflows, and AI-powered tools.",
     "ogImage": {
       "src": "/opengraph-image",
-      "alt": "Social preview for Meklit Girmaw, fullstack developer"
+      "alt": "Meklit Girmaw's developer portfolio preview"
     }
   }
 }
