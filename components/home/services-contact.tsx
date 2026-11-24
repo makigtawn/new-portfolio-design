@@ -88,14 +88,6 @@ export function ServicesContact({ content }: { content: SiteContent }) {
                   <ArrowUpRight aria-hidden="true" size={14} />
                 </a>
               ))}
-              {content.notes?.length ? (
-                <Link
-                  href="/notes"
-                  className="text-paper/70 hover:text-paper mt-3"
-                >
-                  Notes
-                </Link>
-              ) : null}
             </nav>
           </div>
           <div className="border-paper/20 text-paper/60 mt-16 flex flex-wrap justify-between gap-4 border-t pt-5 text-xs">

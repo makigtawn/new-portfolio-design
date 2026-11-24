@@ -19,11 +19,6 @@ export function SiteHeader() {
         <Link className="hover:text-ink" href="/#about">
           About
         </Link>
-        {content.notes?.length ? (
-          <Link className="hover:text-ink hidden sm:inline" href="/notes">
-            Notes
-          </Link>
-        ) : null}
         <Link className="hover:text-accent" href="/#contact">
           Contact
         </Link>
