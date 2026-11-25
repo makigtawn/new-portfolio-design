@@ -8,6 +8,7 @@ import { resolve } from "node:path";
 
 const port = Number(process.env.MOCK_GITHUB_PORT ?? "4010");
 const repo = process.env.GITHUB_REPO ?? "test-owner/test-repo";
+const expectedToken = process.env.GITHUB_TOKEN ?? "test-token";
 const contentPath = resolve(process.cwd(), "content/site.json");
 const initialContent = readFileSync(contentPath, "utf8");
 type MockFile = { sha: string; content: string };
@@ -102,6 +103,9 @@ const server = createServer(
     const contentsPrefix = `/repos/${repo}/contents/`;
     if (!url.pathname.startsWith(contentsPrefix)) {
       return reply(response, 404, { message: "Not Found" });
+    }
+    if (request.headers.authorization !== `Bearer ${expectedToken}`) {
+      return reply(response, 401, { message: "Bad credentials" });
     }
     const filePath = decodeURIComponent(
       url.pathname.slice(contentsPrefix.length),

@@ -8,6 +8,7 @@ const port = process.env.PORT ?? "3020";
 const adminPassword = process.env.ADMIN_PASSWORD;
 const adminSessionSecret = process.env.ADMIN_SESSION_SECRET;
 const githubRepo = process.env.GITHUB_REPO;
+const githubToken = process.env.GITHUB_TOKEN ?? "test-token";
 if (!adminPassword || !adminSessionSecret || !githubRepo) {
   throw new Error(
     "Copy .env.test.example to .env.test before running Playwright.",
@@ -16,6 +17,7 @@ if (!adminPassword || !adminSessionSecret || !githubRepo) {
 process.env.ADMIN_PASSWORD = adminPassword;
 process.env.ADMIN_SESSION_SECRET = adminSessionSecret;
 process.env.GITHUB_API_URL ??= "http://127.0.0.1:4010";
+process.env.GITHUB_TOKEN = githubToken;
 
 const serverHost = "127.0.0.1";
 const appUrl = process.env.PLAYWRIGHT_BASE_URL ?? `http://localhost:${port}`;
@@ -49,6 +51,7 @@ export default defineConfig({
       env: {
         ...process.env,
         GITHUB_REPO: githubRepo,
+        GITHUB_TOKEN: githubToken,
         MOCK_GITHUB_PORT: "4010",
       },
     },
@@ -63,7 +66,7 @@ export default defineConfig({
         ADMIN_SESSION_SECRET: adminSessionSecret,
         GITHUB_REPO: githubRepo,
         GITHUB_API_URL: process.env.GITHUB_API_URL,
-        GITHUB_TOKEN: process.env.GITHUB_TOKEN ?? "test-token",
+        GITHUB_TOKEN: githubToken,
         GITHUB_BRANCH: process.env.GITHUB_BRANCH ?? "main",
         NEXT_PUBLIC_SITE_URL:
           process.env.NEXT_PUBLIC_SITE_URL ?? `http://localhost:${port}`,
