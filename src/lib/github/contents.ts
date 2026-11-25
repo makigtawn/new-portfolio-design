@@ -1,9 +1,16 @@
 import { parseSiteContent, type SiteContent } from "@/src/lib/content/schema";
 
-const apiRoot = (
-  process.env.GITHUB_API_URL ?? "https://api.github.com"
-).replace(/\/+$/, "");
 const githubApiVersion = "2022-11-28";
+
+function getApiRoot(): string {
+  // Read this at runtime so production builds can use the deployment's API URL.
+  // Next.js can inline direct process.env reads while compiling server bundles.
+  const runtimeEnv = process.env as Record<string, string | undefined>;
+  return (runtimeEnv["GITHUB_API_URL"] ?? "https://api.github.com").replace(
+    /\/+$/,
+    "",
+  );
+}
 
 export class GitHubConflictError extends Error {
   constructor() {
@@ -55,7 +62,9 @@ async function getFile(
   config: GitHubConfig,
   fetcher: Fetcher,
 ): Promise<GitHubFile | undefined> {
-  const url = new URL(`${apiRoot}/repos/${config.repo}/contents/${path}`);
+  const url = new URL(
+    `${getApiRoot()}/repos/${config.repo}/contents/${path}`,
+  );
   url.searchParams.set("ref", config.branch);
   const response = await fetcher(url, {
     headers: requestHeaders(config.token),
@@ -78,7 +87,7 @@ async function putFile(
   fetcher: Fetcher,
 ): Promise<{ sha: string }> {
   const response = await fetcher(
-    `${apiRoot}/repos/${config.repo}/contents/${path}`,
+    `${getApiRoot()}/repos/${config.repo}/contents/${path}`,
     {
       method: "PUT",
       headers: requestHeaders(config.token),

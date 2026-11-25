@@ -45,6 +45,37 @@ async function modifyProfile(
 }
 
 test.describe("admin behavior against mock GitHub Contents API", () => {
+  test("mock requires the configured Bearer credential and serves content", async ({
+    request,
+  }) => {
+    const url =
+      "http://127.0.0.1:4010/repos/test-owner/test-repo/contents/content/site.json?ref=main";
+    const missing = await request.get(url);
+    expect(missing.status()).toBe(401);
+
+    const invalid = await request.get(url, {
+      headers: { Authorization: "Bearer wrong-test-token" },
+    });
+    expect(invalid.status()).toBe(401);
+
+    const accepted = await request.get(url, {
+      headers: {
+        Authorization: `Bearer ${process.env.GITHUB_TOKEN ?? "test-token"}`,
+      },
+    });
+    expect(accepted.status()).toBe(200);
+    const file = (await accepted.json()) as {
+      encoding: string;
+      content: string;
+      sha: string;
+    };
+    expect(file.encoding).toBe("base64");
+    expect(file.sha).toBeTruthy();
+    expect(Buffer.from(file.content, "base64").toString()).toContain(
+      '"projects"',
+    );
+  });
+
   test("redirects logged-out visits to the login page", async ({ page }) => {
     await page.goto("/admin");
     await expect(page).toHaveURL(/\/admin\/login/);
@@ -90,6 +121,24 @@ test.describe("admin behavior against mock GitHub Contents API", () => {
     expect(cookie?.secure).toBe(true);
     expect(cookie?.sameSite).toBe("Strict");
     expect(cookie?.expires).toBeGreaterThan(Date.now() / 1000 + 7 * 60 * 60);
+  });
+
+  test("admin session remains valid across public and admin navigation", async ({
+    page,
+    context,
+  }) => {
+    await logIn(page);
+    await page.goto("/");
+    await page.goto("/admin");
+    await expect(page).toHaveURL(/\/admin$/);
+    await expect(
+      page.getByRole("button", { name: "Save all changes" }),
+    ).toBeVisible();
+    expect(
+      (await context.cookies()).some(
+        (cookie) => cookie.name === "portfolio_admin_session",
+      ),
+    ).toBe(true);
   });
 
   test("warns before leaving with unsaved edits", async ({ page }) => {
