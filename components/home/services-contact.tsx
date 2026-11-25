@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ArrowUpRight, Mail } from "lucide-react";
 import { RevealHeading } from "@/components/layout/reveal-heading";
 import { buttonVariants } from "@/components/ui/button";
@@ -53,18 +52,18 @@ export function ServicesContact({ content }: { content: SiteContent }) {
         <div className="mx-auto w-[min(calc(100%-2.5rem),75rem)] py-16 md:w-[min(calc(100%-5rem),75rem)] md:py-24">
           <div className="grid gap-10 md:grid-cols-[1fr_15rem] md:items-end">
             <div>
-              <p className="eyebrow text-paper/70">05 / Contact</p>
+              <p className="eyebrow text-paper/75">05 / Contact</p>
               <h2 className="mt-5 max-w-3xl text-4xl leading-tight font-normal tracking-[-0.07em] md:text-6xl">
                 Have something useful to make?
               </h2>
-              <p className="text-paper/75 mt-5 max-w-xl">
+              <p className="text-paper/80 mt-5 max-w-xl">
                 Tell me what you are working through. A few clear details are a
                 good place to begin.
               </p>
               <a
                 className={cn(
                   buttonVariants(),
-                  "border-paper bg-accent text-ink hover:border-accent hover:bg-accent hover:text-paper mt-8",
+                  "border-accent bg-accent text-paper hover:border-paper hover:bg-paper hover:text-ink mt-8",
                 )}
                 href={`mailto:${content.profile.email}`}
               >
@@ -73,8 +72,8 @@ export function ServicesContact({ content }: { content: SiteContent }) {
               </a>
             </div>
             <nav
-              aria-label="Social links"
-              className="text-paper/80 flex flex-col items-start gap-3 text-sm"
+              aria-label="Social"
+              className="text-paper/80 flex flex-col items-start gap-1 text-sm"
             >
               {content.profile.socials.map((social) => (
                 <a
@@ -82,7 +81,7 @@ export function ServicesContact({ content }: { content: SiteContent }) {
                   href={social.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-paper inline-flex items-center gap-2"
+                  className="hover:text-paper inline-flex items-center gap-2 py-1.5 transition-colors"
                 >
                   {social.label}
                   <ArrowUpRight aria-hidden="true" size={14} />
@@ -90,11 +89,11 @@ export function ServicesContact({ content }: { content: SiteContent }) {
               ))}
             </nav>
           </div>
-          <div className="border-paper/20 text-paper/60 mt-16 flex flex-wrap justify-between gap-4 border-t pt-5 text-xs">
+          <div className="border-paper/20 text-paper/70 mt-16 flex flex-wrap justify-between gap-4 border-t pt-5 text-xs">
             <p>
               © {new Date().getFullYear()} {content.profile.name}
             </p>
-            <a href="#main-content" className="hover:text-paper">
+            <a href="#main-content" className="hover:text-paper py-1">
               Back to top ↑
             </a>
           </div>

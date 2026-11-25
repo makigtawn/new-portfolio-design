@@ -33,15 +33,13 @@ export function SelectedWork({ content }: { content: SiteContent }) {
               <li key={project.slug}>
                 <Link
                   href={`/work/${project.slug}`}
-                  className="group hover:text-accent flex items-start gap-3 text-sm"
+                  className="group hover:text-accent flex min-h-9 items-center gap-3 rounded py-1 text-sm transition-colors"
                 >
-                  <span className="text-muted mt-0.5 text-xs">
-                    0{index + 1}
-                  </span>
+                  <span className="text-muted text-xs">0{index + 1}</span>
                   <span>{project.title}</span>
                   <ArrowUpRight
                     aria-hidden="true"
-                    className="ml-auto size-4 opacity-0 transition-opacity group-hover:opacity-100"
+                    className="ml-auto size-4 opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
                   />
                 </Link>
               </li>

@@ -49,12 +49,7 @@
       "title": "Clinic Queue Manager",
       "summary": "A simple queue management prototype designed to help clinic staff keep track of patients during busy hours.",
       "role": "Backend developer · Data structures and algorithms",
-      "stack": [
-        "C++",
-        "STL",
-        "Data structures",
-        "Algorithms"
-      ],
+      "stack": ["C++", "STL", "Data structures", "Algorithms"],
       "year": "2025",
       "problem": "Managing patient queues with paper lists can get confusing, especially when several patients arrive at once or someone needs urgent attention.",
       "approach": "I used queue data structures to organize patient arrivals and added priority handling for urgent cases. I wanted to keep the logic simple and understand why each data structure was the right choice.",
@@ -77,12 +72,7 @@
       "title": "Social Media Agent",
       "summary": "An AI-powered tool that helps turn campaign ideas into social media drafts using the Gemini API.",
       "role": "Full-stack developer · AI integration",
-      "stack": [
-        "TypeScript",
-        "Gemini API",
-        "Next.js",
-        "Zod"
-      ],
+      "stack": ["TypeScript", "Gemini API", "Next.js", "Zod"],
       "year": "2025",
       "problem": "Creating social media content for different platforms takes time. Teams often have to repeat the same research, writing, and formatting work for every campaign.",
       "approach": "I built a workflow that takes a campaign brief, validates the input, and uses the Gemini API to generate structured content suggestions. I also included a human review step so generated content can be checked and edited before publishing.",
@@ -133,14 +123,6 @@
     {
       "title": "Frontend development",
       "description": "Creating responsive interfaces that are easy to navigate and comfortable to use."
-    }
-  ],
-  "notes": [
-    {
-      "title": "AI still needs a human in the loop",
-      "date": "2025-04-12",
-      "excerpt": "Generating content is one thing. Making sure it's actually useful is another.",
-      "body": "One thing I've been thinking about while building AI tools is how much control people should have over the output.\n\nFor example, in my Social Media Agent project, I didn't want generated content to go straight to publishing. People should be able to read it, make changes, and decide whether it's good enough. That review step isn't just an extra feature. It's an important part of the workflow.\n\nI think the same idea applies to other internal tools too. Automation should make work easier, not make people lose control of what's happening."
     }
   ],
   "seo": {

@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { slugFromTitle } from "./slug";
 
 const httpUrl = z
   .string()
@@ -93,19 +92,6 @@ export const serviceSchema = z.object({
   description: z.string().trim().min(1),
 });
 
-export const noteSchema = z.object({
-  title: z
-    .string()
-    .trim()
-    .min(1)
-    .refine((value) => slugFromTitle(value).length > 0, {
-      message: "A note title must produce a URL-safe slug.",
-    }),
-  date: z.string().date(),
-  excerpt: z.string().trim().min(1),
-  body: z.string().trim().min(1),
-});
-
 export const seoSchema = z.object({
   siteTitle: z.string().trim().min(1),
   description: z.string().trim().min(1),
@@ -120,7 +106,6 @@ export const siteContentSchema = z
     projects: z.array(projectSchema).min(1),
     experience: z.array(experienceSchema),
     services: z.array(serviceSchema),
-    notes: z.array(noteSchema).optional(),
     seo: seoSchema,
   })
   .superRefine((content, context) => {
@@ -139,22 +124,11 @@ export const siteContentSchema = z
         message: "Mark at least one project as featured.",
       });
     }
-    const noteSlugs = (content.notes ?? []).map((note) =>
-      slugFromTitle(note.title),
-    );
-    if (new Set(noteSlugs).size !== noteSlugs.length) {
-      context.addIssue({
-        code: "custom",
-        path: ["notes"],
-        message: "Note titles must generate unique slugs.",
-      });
-    }
   });
 
 export type SiteContent = z.infer<typeof siteContentSchema>;
 export type Profile = z.infer<typeof profileSchema>;
 export type Project = z.infer<typeof projectSchema>;
-export type Note = z.infer<typeof noteSchema>;
 
 export function parseSiteContent(source: string): SiteContent {
   const value = JSON.parse(source.replace(/^\/\/[^\n]*\n/, "")) as unknown;

@@ -104,9 +104,7 @@ export function serializeContentWithPlaceholderNote(
 ): string {
   const committed = {
     ...content,
-    _comment:
-      content._comment ??
-      "PLACEHOLDER CONTENT: Replace any remaining sample details and unverified demo metrics before publishing.",
+    ...(content._comment ? { _comment: content._comment } : {}),
   };
   return `${JSON.stringify(committed, null, 2)}\n`;
 }

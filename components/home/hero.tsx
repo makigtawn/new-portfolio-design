@@ -28,6 +28,7 @@ export function Hero({ content }: { content: SiteContent }) {
             >
               <span className="block animate-[hero-rise_650ms_cubic-bezier(0.22,1,0.36,1)_both] motion-reduce:animate-none">
                 {line}
+                {index < lines.length - 1 ? " " : null}
               </span>
             </span>
           ))}

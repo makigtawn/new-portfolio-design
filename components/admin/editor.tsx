@@ -12,12 +12,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { ImageUpload } from "@/components/admin/image-upload";
 import {
   experienceSchema,
   heroSchema,
-  noteSchema,
   profileSchema,
   projectSchema,
   seoSchema,
@@ -57,13 +56,6 @@ const sectionDefinitions = [
     title: "Services",
     description: "Ways clients can work with you.",
     schema: z.array(serviceSchema),
-  },
-  {
-    key: "notes",
-    title: "Notes",
-    description:
-      "Short writeups. Remove this section’s entries to hide notes from navigation.",
-    schema: z.array(noteSchema),
   },
   {
     key: "seo",
@@ -115,13 +107,15 @@ function SectionEditor({ section, value, onChange }: SectionEditorProps) {
   const {
     register,
     handleSubmit,
+    clearErrors,
     formState: { errors, isDirty },
     reset,
     getValues,
   } = useForm<SectionFormValues>({
     resolver: zodResolver(fieldSchema) as Resolver<SectionFormValues>,
     defaultValues: { json: value },
-    mode: "onChange",
+    mode: "onBlur",
+    reValidateMode: "onChange",
   });
   const [validated, setValidated] = useState(false);
   const field = register("json");
@@ -157,6 +151,7 @@ function SectionEditor({ section, value, onChange }: SectionEditorProps) {
         }
         onChange={(event) => {
           field.onChange(event);
+          if (errors.json) clearErrors("json");
           setValidated(false);
           onChange(section.key, event.currentTarget.value);
         }}
@@ -362,7 +357,7 @@ export function AdminEditor({
         </div>
         <div className="flex flex-wrap gap-2">
           <Link
-            className="border-line hover:bg-wash inline-flex min-h-10 items-center rounded-md border px-3 text-sm"
+            className={buttonVariants({ variant: "outline" })}
             href="/"
             target="_blank"
             rel="noreferrer"
@@ -376,7 +371,6 @@ export function AdminEditor({
       </div>
       <div className="mt-7 flex flex-wrap items-center justify-between gap-4">
         <p
-          aria-live="polite"
           role={status.kind === "error" ? "alert" : "status"}
           className={`text-sm ${status.kind === "error" ? "text-accent" : "text-muted"}`}
         >

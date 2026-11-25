@@ -105,4 +105,12 @@ describe("GitHub Contents API save helper", () => {
       ),
     ).rejects.toBeInstanceOf(GitHubConflictError);
   });
+
+  it("does not re-add a placeholder comment once removed", () => {
+    const cleanContent = { ...content };
+    delete cleanContent._comment;
+    expect(serializeContentWithPlaceholderNote(cleanContent)).not.toContain(
+      "PLACEHOLDER CONTENT",
+    );
+  });
 });

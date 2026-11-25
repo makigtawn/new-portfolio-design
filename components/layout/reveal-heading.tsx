@@ -33,7 +33,7 @@ export function RevealHeading({
           observer.unobserve(element);
         }
       },
-      { threshold: 0.35 },
+      { threshold: 0.15 },
     );
     observer.observe(element);
     return () => observer.disconnect();

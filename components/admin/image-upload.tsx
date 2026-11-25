@@ -8,10 +8,12 @@ export function ImageUpload() {
   const [message, setMessage] = useState("");
   const [path, setPath] = useState("");
   const [busy, setBusy] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   async function upload(file: File | undefined) {
     setPath("");
     setMessage("");
+    setCopied(false);
     if (!file) return;
     const form = new FormData();
     form.set("file", file);
@@ -41,6 +43,16 @@ export function ImageUpload() {
     }
   }
 
+  async function copyPath() {
+    if (!path) return;
+    try {
+      await navigator.clipboard?.writeText(path);
+      setCopied(true);
+    } catch {
+      setCopied(false);
+    }
+  }
+
   return (
     <section
       aria-labelledby="upload-heading"
@@ -60,13 +72,9 @@ export function ImageUpload() {
           accept="image/jpeg,image/png,image/webp"
           aria-label="Choose a JPEG, PNG, or WebP image"
           onChange={(event) => void upload(event.currentTarget.files?.[0])}
-          className="file:border-line file:bg-paper file:text-ink max-w-full text-sm file:mr-3 file:rounded-md file:border file:px-3 file:py-2 file:text-sm"
+          className="file:border-control-line file:bg-paper file:text-ink hover:file:bg-wash max-w-full text-sm file:mr-3 file:min-h-11 file:rounded-md file:border file:px-4 file:py-2 file:text-sm file:font-medium"
         />
-        {busy ? (
-          <span role="status" className="text-muted text-sm">
-            Uploading…
-          </span>
-        ) : null}
+        {busy ? <span className="text-muted text-sm">Uploading…</span> : null}
       </div>
       {message ? (
         <p role="status" className="text-muted mt-3 text-sm">
@@ -75,16 +83,16 @@ export function ImageUpload() {
       ) : null}
       {path ? (
         <div className="mt-3 flex flex-wrap items-center gap-2">
-          <code className="border-line rounded border px-2 py-1 text-sm">
+          <code className="border-control-line rounded border px-2.5 py-1.5 text-sm">
             {path}
           </code>
           <Button
             type="button"
             variant="outline"
             size="sm"
-            onClick={() => void navigator.clipboard?.writeText(path)}
+            onClick={() => void copyPath()}
           >
-            Copy path
+            {copied ? "Copied" : "Copy path"}
           </Button>
         </div>
       ) : null}

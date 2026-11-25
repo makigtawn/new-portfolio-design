@@ -26,6 +26,7 @@ test.describe("hydration and Motion console regression", () => {
     `/work/${firstSlug}`,
     "/admin/login",
     "/not-found",
+    "/error",
   ]) {
     test(`has no hydration or position warnings on ${route}`, async ({
       page,
@@ -65,10 +66,7 @@ test.describe("hydration and Motion console regression", () => {
       const media = page.locator(".project-media-initial").first();
       await expect(media).toBeVisible();
       await expect(media).toHaveCSS("opacity", "1");
-      await expect(page.locator(".marquee-track")).toHaveCSS(
-        "animation-name",
-        "none",
-      );
+      await expect(page.locator("#skills")).toBeVisible();
       expect(
         messages.filter((message) => sensitiveConsolePattern.test(message)),
       ).toEqual([]);

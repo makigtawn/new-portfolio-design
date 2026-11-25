@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Eye, EyeOff } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
@@ -15,6 +16,7 @@ type LoginValues = z.infer<typeof loginSchema>;
 export function LoginForm() {
   const router = useRouter();
   const [serverError, setServerError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const {
     register,
     handleSubmit,
@@ -63,17 +65,36 @@ export function LoginForm() {
         >
           Password
         </label>
-        <input
-          {...register("password")}
-          id="admin-password"
-          type="password"
-          autoComplete="current-password"
-          aria-invalid={Boolean(errors.password)}
-          aria-describedby={
-            errors.password ? "admin-password-error" : undefined
-          }
-          className="field-control placeholder-muted"
-        />
+        <div className="relative">
+          <input
+            {...register("password")}
+            id="admin-password"
+            type={showPassword ? "text" : "password"}
+            autoComplete="current-password"
+            autoCorrect="off"
+            autoCapitalize="none"
+            spellCheck={false}
+            enterKeyHint="done"
+            aria-invalid={Boolean(errors.password)}
+            aria-describedby={
+              errors.password ? "admin-password-error" : undefined
+            }
+            className="field-control placeholder-muted pr-12"
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword((current) => !current)}
+            aria-pressed={showPassword}
+            aria-label={showPassword ? "Hide characters" : "Show characters"}
+            className="text-muted hover:text-ink absolute inset-y-1 right-1 inline-flex min-w-10 items-center justify-center rounded px-2 transition-colors"
+          >
+            {showPassword ? (
+              <EyeOff aria-hidden="true" size={18} />
+            ) : (
+              <Eye aria-hidden="true" size={18} />
+            )}
+          </button>
+        </div>
         {errors.password ? (
           <p id="admin-password-error" className="text-accent mt-2 text-sm">
             {errors.password.message}

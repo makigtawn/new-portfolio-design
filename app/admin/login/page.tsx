@@ -10,7 +10,7 @@ export default function AdminLoginPage() {
   return (
     <main
       id="main-content"
-      className="mx-auto flex min-h-[75vh] w-[min(calc(100%-2.5rem),75rem)] items-center py-16 md:w-[min(calc(100%-5rem),75rem)]"
+      className="mx-auto flex min-h-[calc(100svh-5.25rem)] w-[min(calc(100%-2.5rem),75rem)] items-center py-16 md:w-[min(calc(100%-5rem),75rem)]"
     >
       <div className="w-full max-w-md">
         <p className="eyebrow">Private / Content editor</p>

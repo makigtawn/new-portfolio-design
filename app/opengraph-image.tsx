@@ -26,7 +26,7 @@ export default function OpenGraphImage() {
           display: "flex",
           alignItems: "center",
           gap: "16px",
-          color: "#716D65",
+          color: "#635F58",
           fontSize: 22,
           letterSpacing: "3px",
           textTransform: "uppercase",
@@ -54,11 +54,11 @@ export default function OpenGraphImage() {
           display: "flex",
           justifyContent: "space-between",
           fontSize: 21,
-          color: "#716D65",
+          color: "#635F58",
         }}
       >
         <span>{content.seo.siteTitle}</span>
-        <span>Available for thoughtful projects</span>
+        <span>{content.profile.availability}</span>
       </div>
     </div>,
     size,
