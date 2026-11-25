@@ -62,9 +62,7 @@ async function getFile(
   config: GitHubConfig,
   fetcher: Fetcher,
 ): Promise<GitHubFile | undefined> {
-  const url = new URL(
-    `${getApiRoot()}/repos/${config.repo}/contents/${path}`,
-  );
+  const url = new URL(`${getApiRoot()}/repos/${config.repo}/contents/${path}`);
   url.searchParams.set("ref", config.branch);
   const response = await fetcher(url, {
     headers: requestHeaders(config.token),
