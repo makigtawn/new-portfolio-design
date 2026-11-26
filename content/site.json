@@ -1,10 +1,9 @@
 {
-  "_comment": "PLACEHOLDER CONTENT: Replace sample details, links, and unverified project metrics before publishing.",
   "profile": {
     "name": "Meklit Girmaw",
     "role": "Full-stack developer",
-    "proofPoint": "I enjoy building useful things, solving real problems, and making software easier to use.",
-    "bio": "I'm a full-stack developer who enjoys working on both the frontend and backend. I like turning ideas into working products, figuring out how things fit together, and making sure the final result is actually useful. I'm also exploring AI-powered tools and ways to make everyday workflows easier.",
+    "proofPoint": "Focused on TypeScript, Next.js, validated APIs, and automated testing.",
+    "bio": "I am a full-stack developer working with React, Next.js, TypeScript, and Node.js. I care about clear data boundaries, accessible interfaces, and verifying behavior with automated unit and end-to-end tests.",
     "location": "Bahir Dar, Ethiopia",
     "availability": "Open to remote and hybrid opportunities",
     "email": "meklitgirmaw@gmail.com",
@@ -22,18 +21,18 @@
         "url": "https://x.com/makigtawn"
       },
       {
-        "label": "Discord",
-        "url": "https://discord.com/users/makigtawn"
+        "label": "Instagram",
+        "url": "https://www.instagram.com/makigtawn"
       }
     ],
     "photo": {
       "src": "/avatar-mark.svg",
-      "alt": "Meklit's profile picture"
+      "alt": "MG monogram mark for Meklit Girmaw"
     }
   },
   "hero": {
     "headline": "I build software\nthat solves real problems.",
-    "subline": "From frontend interfaces to backend systems, I enjoy figuring things out and turning ideas into working products.",
+    "subline": "Building full-stack web applications and AI-assisted workflows from schema design to deployment.",
     "primaryCta": {
       "label": "See what I've built",
       "href": "#work"
@@ -47,47 +46,35 @@
     {
       "slug": "clinic-queue-manager",
       "title": "Clinic Queue Manager",
-      "summary": "A simple queue management prototype designed to help clinic staff keep track of patients during busy hours.",
+      "summary": "A C++ queue management prototype exploring patient check-in order and urgent priority handling.",
       "role": "Backend developer · Data structures and algorithms",
       "stack": ["C++", "STL", "Data structures", "Algorithms"],
       "year": "2025",
-      "problem": "Managing patient queues with paper lists can get confusing, especially when several patients arrive at once or someone needs urgent attention.",
-      "approach": "I used queue data structures to organize patient arrivals and added priority handling for urgent cases. I wanted to keep the logic simple and understand why each data structure was the right choice.",
-      "outcome": "Built a C++ prototype with features for patient check-in, priority handling, searching, and completing appointments. It was a good way to practice data structures and understand how they work in a practical scenario.",
-      "metric": "Evaluation pending: target 20% shorter average waiting time.",
+      "problem": "Manual paper patient lists make it difficult for clinic staff to maintain an accurate check-in order when multiple patients arrive together or urgent cases need priority.",
+      "approach": "Modeled patient arrivals using standard FIFO queues alongside priority handling for urgent cases, focusing on explicit data structure choices and predictable lookup and completion operations.",
+      "outcome": "Implemented a C++ prototype supporting patient check-in, urgent priority insertion, record search, and appointment completion.",
       "cover": {
         "src": "/work/clinic-queue.svg",
-        "alt": "Queue dashboard concept showing patient sequence, wait time, and priority status"
+        "alt": "Concept wireframe illustrating a clinic patient queue sequence and priority status"
       },
-      "links": [
-        {
-          "label": "Source code placeholder",
-          "url": "https://github.com/your-handle/clinic-queue-manager"
-        }
-      ],
+      "links": [],
       "featured": true
     },
     {
       "slug": "social-media-agent",
       "title": "Social Media Agent",
-      "summary": "An AI-powered tool that helps turn campaign ideas into social media drafts using the Gemini API.",
+      "summary": "A Next.js and Gemini API prototype that generates structured social media drafts from a validated brief for human review.",
       "role": "Full-stack developer · AI integration",
       "stack": ["TypeScript", "Gemini API", "Next.js", "Zod"],
       "year": "2025",
-      "problem": "Creating social media content for different platforms takes time. Teams often have to repeat the same research, writing, and formatting work for every campaign.",
-      "approach": "I built a workflow that takes a campaign brief, validates the input, and uses the Gemini API to generate structured content suggestions. I also included a human review step so generated content can be checked and edited before publishing.",
-      "outcome": "Built a prototype that generates multiple content drafts from a single brief and sends them through a review process. The idea is to make content creation easier while keeping people involved in the final decisions.",
-      "metric": "Evaluation pending: compare content review time across 10 representative campaign briefs.",
+      "problem": "Drafting social media posts for multiple platforms from a campaign brief often requires repetitive research, formatting, and manual checks across channels.",
+      "approach": "Validated incoming campaign briefs with Zod before calling the Gemini API to produce structured draft options, keeping a manual review step between generation and publishing.",
+      "outcome": "Built a prototype workflow generating multiple editable draft options per brief with schema validation before review.",
       "cover": {
         "src": "/work/social-agent.svg",
-        "alt": "Campaign workspace concept with a brief and three reviewed draft options"
+        "alt": "Concept wireframe showing a campaign brief alongside reviewed draft options"
       },
-      "links": [
-        {
-          "label": "Source code placeholder",
-          "url": "https://github.com/your-handle/social-media-agent"
-        }
-      ],
+      "links": [],
       "featured": true
     }
   ],
@@ -97,8 +84,8 @@
       "role": "Full-stack developer",
       "period": "2024 - Present",
       "highlights": [
-        "Working on personal projects, from planning features to building and testing them.",
-        "Exploring AI integrations and building tools that solve practical workflow problems."
+        "Built full-stack Next.js and TypeScript projects with Zod validation, session authentication, and automated Vitest and Playwright coverage.",
+        "Prototyped structured AI workflows integrating the Gemini API with schema validation and human review steps."
       ]
     },
     {
@@ -106,28 +93,28 @@
       "role": "Software developer",
       "period": "2022 - 2024",
       "highlights": [
-        "Practiced programming through C++ assignments and full-stack development projects.",
-        "Learned to break down problems and build solutions one piece at a time."
+        "Practiced algorithms, data structures, and systems fundamentals through C++ assignments and personal builds.",
+        "Developed foundational frontend and backend web development skills with React, TypeScript, and Node.js."
       ]
     }
   ],
   "services": [
     {
       "title": "Full-stack development",
-      "description": "Building web applications, from backend logic and databases to frontend interfaces."
+      "description": "Building responsive web applications with TypeScript, React, Next.js, and Node.js API routes."
     },
     {
-      "title": "AI-powered tools",
-      "description": "Experimenting with AI integrations to automate repetitive tasks and improve existing workflows."
+      "title": "AI-powered workflows",
+      "description": "Integrating structured AI outputs and validation pipelines into practical web interfaces."
     },
     {
       "title": "Frontend development",
-      "description": "Creating responsive interfaces that are easy to navigate and comfortable to use."
+      "description": "Creating accessible, responsive interfaces with semantic HTML, Tailwind CSS, and keyboard support."
     }
   ],
   "seo": {
     "siteTitle": "Meklit Girmaw | Full-stack Developer",
-    "description": "Full-stack developer building web applications, useful workflows, and AI-powered tools.",
+    "description": "Full-stack developer building TypeScript and Next.js web applications, validated APIs, and AI-assisted workflows.",
     "ogImage": {
       "src": "/opengraph-image",
       "alt": "Meklit Girmaw's developer portfolio preview"

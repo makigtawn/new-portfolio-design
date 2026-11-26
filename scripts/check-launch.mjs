@@ -17,10 +17,35 @@ const missingEnv = required.filter(
 const markers = [
   /PLACEHOLDER/i,
   /example\.com/i,
+  /example\.dev/i,
+  /your-handle/i,
+  /evaluation pending/i,
   /\bTODO\b/i,
   /lorem/i,
   /placeholder\.jpg/i,
 ];
+const siteUrlRaw =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "");
+let invalidSiteUrl = false;
+try {
+  const parsed = new URL(siteUrlRaw);
+  const host = parsed.hostname.toLowerCase();
+  invalidSiteUrl =
+    (parsed.protocol !== "http:" && parsed.protocol !== "https:") ||
+    host === "localhost" ||
+    host === "127.0.0.1" ||
+    host === "::1" ||
+    host === "[::1]" ||
+    host === "example.dev";
+} catch {
+  invalidSiteUrl = true;
+}
+if (invalidSiteUrl) {
+  missingEnv.push("NEXT_PUBLIC_SITE_URL");
+}
 const findings = [];
 
 async function scan(dir) {

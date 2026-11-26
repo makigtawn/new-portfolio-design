@@ -6,9 +6,14 @@ import { notFound } from "next/navigation";
 import { buttonVariants } from "@/components/ui/button";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { getSiteContent } from "@/src/lib/content/load";
+import { getPublicSiteUrl } from "@/src/lib/site-url";
 import { cn } from "@/src/lib/utils";
 
 type PageProps = { params: Promise<{ slug: string }> };
+
+function isRasterImagePath(src: string): boolean {
+  return /\.(png|jpe?g|webp|avif)$/i.test(src);
+}
 
 export function generateStaticParams() {
   return getSiteContent().projects.map((project) => ({ slug: project.slug }));
@@ -18,21 +23,32 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const project = getSiteContent().projects.find((item) => item.slug === slug);
+  const content = getSiteContent();
+  const project = content.projects.find((item) => item.slug === slug);
   if (!project) return { title: "Project not found" };
+  const publicUrl = getPublicSiteUrl();
+  const socialImage = isRasterImagePath(project.cover.src)
+    ? { url: project.cover.src, alt: project.cover.alt }
+    : {
+        url: content.seo.ogImage.src,
+        alt: `${project.title} · ${content.profile.name}`,
+      };
   return {
     title: `${project.title} - Case study`,
     description: project.summary,
+    ...(publicUrl
+      ? { alternates: { canonical: `/work/${project.slug}` } }
+      : {}),
     openGraph: {
       title: `${project.title} - Case study`,
       description: project.summary,
-      images: [{ url: project.cover.src, alt: project.cover.alt }],
+      images: [socialImage],
     },
     twitter: {
       card: "summary_large_image",
       title: `${project.title} - Case study`,
       description: project.summary,
-      images: [{ url: project.cover.src, alt: project.cover.alt }],
+      images: [socialImage],
     },
   };
 }
@@ -59,7 +75,7 @@ export default async function ProjectPage({ params }: PageProps) {
         <div className="pt-10 md:pt-16">
           <Link
             href="/#work"
-            className="text-muted hover:text-accent inline-flex min-h-10 items-center gap-2 py-2 text-sm transition-colors"
+            className="text-muted hover:text-accent inline-flex min-h-11 items-center gap-2 py-2 text-sm transition-colors"
           >
             <ArrowLeft aria-hidden="true" size={16} />
             Selected work
@@ -92,7 +108,9 @@ export default async function ProjectPage({ params }: PageProps) {
         <div className="border-line mt-16 grid gap-12 border-t pt-12 md:mt-24 md:grid-cols-[minmax(12rem,0.55fr)_1fr] md:gap-14">
           <aside className="space-y-10">
             <div>
-              <h2 className="eyebrow">Stack</h2>
+              <h2 className="text-muted text-sm font-medium tracking-[0.11em] uppercase">
+                Stack
+              </h2>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {project.stack.map((item) => (
                   <li
@@ -106,12 +124,14 @@ export default async function ProjectPage({ params }: PageProps) {
             </div>
             {project.links.length ? (
               <div>
-                <h2 className="eyebrow">Links</h2>
+                <h2 className="text-muted text-sm font-medium tracking-[0.11em] uppercase">
+                  Links
+                </h2>
                 <ul className="mt-3 space-y-2">
                   {project.links.map((link) => (
                     <li key={link.url}>
                       <a
-                        className="text-accent inline-flex min-h-9 items-center gap-2 py-1 text-sm hover:underline"
+                        className="text-accent inline-flex min-h-11 items-center gap-2 py-1 text-sm hover:underline"
                         href={link.url}
                         target="_blank"
                         rel="noreferrer"
@@ -127,7 +147,10 @@ export default async function ProjectPage({ params }: PageProps) {
           </aside>
           <div className="space-y-12 md:space-y-16">
             <section aria-labelledby="problem-heading">
-              <h2 id="problem-heading" className="eyebrow">
+              <h2
+                id="problem-heading"
+                className="text-muted text-sm font-medium tracking-[0.11em] uppercase"
+              >
                 The problem
               </h2>
               <p className="mt-4 max-w-3xl text-xl leading-relaxed tracking-tight md:text-2xl">
@@ -135,7 +158,10 @@ export default async function ProjectPage({ params }: PageProps) {
               </p>
             </section>
             <section aria-labelledby="approach-heading">
-              <h2 id="approach-heading" className="eyebrow">
+              <h2
+                id="approach-heading"
+                className="text-muted text-sm font-medium tracking-[0.11em] uppercase"
+              >
                 The approach
               </h2>
               <p className="text-muted mt-4 max-w-3xl leading-relaxed">
@@ -143,7 +169,10 @@ export default async function ProjectPage({ params }: PageProps) {
               </p>
             </section>
             <section aria-labelledby="outcome-heading">
-              <h2 id="outcome-heading" className="eyebrow">
+              <h2
+                id="outcome-heading"
+                className="text-muted text-sm font-medium tracking-[0.11em] uppercase"
+              >
                 The outcome
               </h2>
               <p className="mt-4 max-w-3xl leading-relaxed">

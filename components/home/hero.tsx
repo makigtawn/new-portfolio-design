@@ -50,6 +50,16 @@ export function Hero({ content }: { content: SiteContent }) {
           >
             {content.hero.secondaryCta.label}
           </Link>
+          {content.profile.resume ? (
+            <a
+              className={buttonVariants({ variant: "ghost" })}
+              href={content.profile.resume.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {content.profile.resume.label}
+            </a>
+          ) : null}
         </div>
       </div>
       <aside className="flex animate-[hero-follow_650ms_cubic-bezier(0.22,1,0.36,1)_420ms_both] items-center gap-4 motion-reduce:animate-none md:block md:self-end md:pb-2">

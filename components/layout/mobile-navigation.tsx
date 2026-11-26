@@ -113,7 +113,7 @@ export function MobileNavigation({ brandName }: { brandName: string }) {
                   href={item.href}
                   onClick={closeMenu}
                   aria-current={isCurrentSection ? "true" : undefined}
-                  className={`flex min-h-11 items-center rounded-md px-3 py-2 text-sm transition-colors md:min-h-9 md:px-1.5 md:py-1 ${
+                  className={`flex min-h-11 items-center rounded-md px-3 py-2 text-sm transition-colors md:px-1.5 md:py-1 ${
                     isCurrentSection
                       ? "text-ink decoration-accent font-medium underline decoration-2 underline-offset-4"
                       : isContact

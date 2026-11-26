@@ -21,22 +21,48 @@ export function RevealHeading({
     const element = ref.current;
     if (!element) return;
 
-    if (!("IntersectionObserver" in window)) {
-      requestAnimationFrame(() => setIsVisible(true));
-      return;
-    }
+    let observer: IntersectionObserver | null = null;
+    const reveal = () => {
+      setIsVisible(true);
+      observer?.disconnect();
+      window.removeEventListener("scroll", checkPosition);
+      window.removeEventListener("hashchange", checkPosition);
+    };
+    const checkPosition = () => {
+      const rect = element.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.95) {
+        reveal();
+        return true;
+      }
+      return false;
+    };
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(element);
-        }
-      },
-      { threshold: 0.15 },
-    );
-    observer.observe(element);
-    return () => observer.disconnect();
+    const frame = requestAnimationFrame(() => {
+      if (checkPosition()) return;
+      if ("IntersectionObserver" in window) {
+        observer = new IntersectionObserver(
+          ([entry]) => {
+            if (entry?.isIntersecting || checkPosition()) {
+              reveal();
+            }
+          },
+          { threshold: 0.05 },
+        );
+        observer.observe(element);
+      } else {
+        reveal();
+      }
+    });
+
+    window.addEventListener("scroll", checkPosition, { passive: true });
+    window.addEventListener("hashchange", checkPosition);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      observer?.disconnect();
+      window.removeEventListener("scroll", checkPosition);
+      window.removeEventListener("hashchange", checkPosition);
+    };
   }, []);
 
   const visibility = isVisible ? "reveal-visible" : "reveal-ready";

@@ -2,6 +2,8 @@ import { RevealHeading } from "@/components/layout/reveal-heading";
 import type { SiteContent } from "@/src/lib/content/schema";
 
 export function Experience({ content }: { content: SiteContent }) {
+  const education = content.education ?? [];
+
   return (
     <section
       aria-labelledby="experience-heading"
@@ -41,6 +43,36 @@ export function Experience({ content }: { content: SiteContent }) {
           </li>
         ))}
       </ol>
+      {education.length ? (
+        <div className="mt-14 md:mt-20">
+          <h3 className="eyebrow mb-6">Education</h3>
+          <ol>
+            {education.map((entry) => (
+              <li
+                key={`${entry.institution}-${entry.period}`}
+                className="border-line grid gap-4 border-t py-7 md:grid-cols-[minmax(12rem,0.55fr)_1fr] md:gap-12 md:py-9"
+              >
+                <div>
+                  <p className="text-sm font-medium">{entry.institution}</p>
+                  <p className="text-muted mt-1 text-sm">{entry.period}</p>
+                </div>
+                <div className="grid gap-4 md:grid-cols-[minmax(10rem,0.7fr)_1.3fr] md:gap-8">
+                  <p className="text-lg font-normal tracking-tight">
+                    {entry.program}
+                  </p>
+                  {entry.highlights?.length ? (
+                    <ul className="text-muted space-y-2 text-sm leading-relaxed">
+                      {entry.highlights.map((highlight) => (
+                        <li key={highlight}>{highlight}</li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      ) : null}
     </section>
   );
 }

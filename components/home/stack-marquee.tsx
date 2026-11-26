@@ -7,27 +7,20 @@ const categories = [
       "Next.js",
       "Accessible UI",
       "Tailwind CSS",
-      "Shadcn UI",
+      "shadcn/ui",
     ],
   },
   {
-    title: "Backend",
-    skills: ["Node.js", "Express.js", "REST APIs", "Data structures"],
-  },
-  { title: "Databases", skills: ["PostgreSQL"] },
-  {
-    title: "Infrastructure & tools",
-    skills: ["Git", "GitHub", "Vercel", "AWS"],
+    title: "Backend & fundamentals",
+    skills: ["Node.js", "REST APIs", "Zod", "C++", "Data structures"],
   },
   {
-    title: "AI engineering",
-    skills: [
-      "Gemini API",
-      "Structured outputs",
-      "Prompt engineering",
-      "AI integrations",
-      "Vercel SDK",
-    ],
+    title: "Tooling & testing",
+    skills: ["Git", "GitHub", "GitHub Actions", "Vitest", "Playwright"],
+  },
+  {
+    title: "AI integration",
+    skills: ["Gemini API", "Structured outputs", "AI integrations"],
   },
 ];
 

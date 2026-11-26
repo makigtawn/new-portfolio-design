@@ -27,6 +27,21 @@ export const imageSchema = z.object({
   alt: z.string().trim().min(1, "Alt text is required."),
 });
 
+export const resumeSchema = z.object({
+  label: z.string().trim().min(1),
+  href: z
+    .string()
+    .trim()
+    .min(1)
+    .refine(
+      (value) =>
+        value.startsWith("/") &&
+        !value.startsWith("//") &&
+        !value.split("/").includes(".."),
+      { message: "Resume paths must be safe public-root paths." },
+    ),
+});
+
 export const profileSchema = z.object({
   name: z.string().trim().min(1),
   role: z.string().trim().min(1),
@@ -37,6 +52,7 @@ export const profileSchema = z.object({
   email: z.string().trim().email(),
   socials: z.array(linkSchema),
   photo: imageSchema,
+  resume: resumeSchema.optional(),
 });
 
 export const ctaSchema = z.object({
@@ -87,6 +103,13 @@ export const experienceSchema = z.object({
   highlights: z.array(z.string().trim().min(1)).min(1),
 });
 
+export const educationSchema = z.object({
+  institution: z.string().trim().min(1),
+  program: z.string().trim().min(1),
+  period: z.string().trim().min(1),
+  highlights: z.array(z.string().trim().min(1)).optional(),
+});
+
 export const serviceSchema = z.object({
   title: z.string().trim().min(1),
   description: z.string().trim().min(1),
@@ -105,6 +128,7 @@ export const siteContentSchema = z
     hero: heroSchema,
     projects: z.array(projectSchema).min(1),
     experience: z.array(experienceSchema),
+    education: z.array(educationSchema).optional(),
     services: z.array(serviceSchema),
     seo: seoSchema,
   })

@@ -15,6 +15,7 @@ import {
 import { Button, buttonVariants } from "@/components/ui/button";
 import { ImageUpload } from "@/components/admin/image-upload";
 import {
+  educationSchema,
   experienceSchema,
   heroSchema,
   profileSchema,
@@ -50,6 +51,12 @@ const sectionDefinitions = [
     title: "Experience",
     description: "Roles and the work you want clients to understand.",
     schema: z.array(experienceSchema),
+  },
+  {
+    key: "education",
+    title: "Education",
+    description: "University, degree program, dates, and relevant coursework.",
+    schema: z.array(educationSchema),
   },
   {
     key: "services",
@@ -265,10 +272,18 @@ export function AdminEditor({
 
   async function saveContent() {
     setStatus({ kind: "idle", message: "" });
-    const merged: Record<string, unknown> = { ...baseContent };
+    const merged: Record<string, unknown> = {};
     for (const { key } of sectionDefinitions) {
       try {
-        merged[key] = JSON.parse(draft[key]) as unknown;
+        const parsedSection = JSON.parse(draft[key]) as unknown;
+        if (
+          key === "education" &&
+          Array.isArray(parsedSection) &&
+          parsedSection.length === 0
+        ) {
+          continue;
+        }
+        merged[key] = parsedSection;
       } catch {
         setStatus({
           kind: "error",

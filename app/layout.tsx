@@ -4,7 +4,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { SmoothScroll } from "@/components/layout/smooth-scroll";
 import { ReadingProgress } from "@/components/layout/reading-progress";
 import { getSiteContent } from "@/src/lib/content/load";
-import { getSiteUrl } from "@/src/lib/site-url";
+import { getPublicSiteUrl } from "@/src/lib/site-url";
 import "./globals.css";
 
 const lexend = Lexend({
@@ -16,8 +16,10 @@ const lexend = Lexend({
 
 export function generateMetadata(): Metadata {
   const content = getSiteContent();
+  const publicUrl = getPublicSiteUrl();
   return {
-    metadataBase: getSiteUrl(),
+    ...(publicUrl ? { metadataBase: publicUrl } : {}),
+    ...(publicUrl ? { alternates: { canonical: "/" } } : {}),
     title: {
       default: content.seo.siteTitle,
       template: `%s · ${content.profile.name}`,

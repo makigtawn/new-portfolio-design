@@ -1,10 +1,12 @@
 import type { MetadataRoute } from "next";
-import { getSiteUrl } from "@/src/lib/site-url";
+import { getPublicSiteUrl } from "@/src/lib/site-url";
 
 export default function robots(): MetadataRoute.Robots {
-  const base = getSiteUrl();
+  const publicBase = getPublicSiteUrl();
   return {
     rules: [{ userAgent: "*", allow: "/", disallow: ["/admin", "/api/admin"] }],
-    sitemap: new URL("/sitemap.xml", base).toString(),
+    ...(publicBase
+      ? { sitemap: new URL("/sitemap.xml", publicBase).toString() }
+      : {}),
   };
 }

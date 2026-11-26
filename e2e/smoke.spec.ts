@@ -128,3 +128,27 @@ test("right password opens the content editor", async ({ page }) => {
     page.getByRole("button", { name: "Save all changes" }),
   ).toBeVisible();
 });
+
+test("hash navigation reveals headings and back-to-top returns to y=0", async ({
+  page,
+}) => {
+  await page.goto("/#contact");
+  await expect(page.locator("#work-heading")).toHaveCSS("opacity", "1");
+  await expect(page.locator("#approach-heading")).toHaveCSS("opacity", "1");
+  await expect(page.locator("#experience-heading")).toHaveCSS("opacity", "1");
+  await expect(page.locator("#services-heading")).toHaveCSS("opacity", "1");
+
+  await page.getByRole("link", { name: /Back to top/i }).click();
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+});
+
+test("case study social metadata uses a raster image rather than SVG", async ({
+  page,
+}) => {
+  await page.goto("/work/clinic-queue-manager");
+  const ogImage = await page
+    .locator('meta[property="og:image"]')
+    .getAttribute("content");
+  expect(ogImage).toBeTruthy();
+  expect(ogImage).not.toMatch(/\.svg(\?|$)/i);
+});

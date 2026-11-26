@@ -28,12 +28,12 @@ export function SelectedWork({ content }: { content: SiteContent }) {
       <div className="border-line mt-14 grid gap-10 border-t pt-8 md:mt-20 md:grid-cols-[minmax(12rem,0.55fr)_1fr] md:gap-12">
         <aside className="h-fit md:sticky md:top-24">
           <p className="eyebrow mb-5">Projects</p>
-          <ol className="space-y-4">
+          <ol className="space-y-2">
             {projects.map((project, index) => (
               <li key={project.slug}>
                 <Link
                   href={`/work/${project.slug}`}
-                  className="group hover:text-accent flex min-h-9 items-center gap-3 rounded py-1 text-sm transition-colors"
+                  className="group hover:text-accent flex min-h-11 items-center gap-3 rounded py-1 text-sm transition-colors"
                 >
                   <span className="text-muted text-xs">0{index + 1}</span>
                   <span>{project.title}</span>

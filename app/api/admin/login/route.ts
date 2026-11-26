@@ -6,7 +6,10 @@ import {
   ADMIN_SESSION_SECONDS,
   createAdminToken,
 } from "@/src/lib/auth/session";
-import { checkLoginRateLimit } from "@/src/lib/admin/rate-limit";
+import {
+  checkLoginRateLimit,
+  getTrustedClientIdentifier,
+} from "@/src/lib/admin/rate-limit";
 
 export const runtime = "nodejs";
 
@@ -20,12 +23,7 @@ function passwordsMatch(candidate: string, actual: string): boolean {
 }
 
 export async function POST(request: NextRequest) {
-  const forwardedFor = request.headers
-    .get("x-forwarded-for")
-    ?.split(",")[0]
-    ?.trim();
-  const identifier =
-    forwardedFor || request.headers.get("x-real-ip") || "unknown";
+  const identifier = getTrustedClientIdentifier(request.headers);
   const limit = checkLoginRateLimit(identifier);
   if (!limit.allowed) {
     return NextResponse.json(

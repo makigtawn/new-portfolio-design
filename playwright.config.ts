@@ -68,6 +68,7 @@ export default defineConfig({
         GITHUB_API_URL: process.env.GITHUB_API_URL,
         GITHUB_TOKEN: githubToken,
         GITHUB_BRANCH: process.env.GITHUB_BRANCH ?? "main",
+        TRUST_PROXY: process.env.TRUST_PROXY ?? "1",
         NEXT_PUBLIC_SITE_URL:
           process.env.NEXT_PUBLIC_SITE_URL ?? `http://localhost:${port}`,
       },

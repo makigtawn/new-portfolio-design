@@ -105,10 +105,10 @@
 
 @utility eyebrow {
   color: var(--color-muted);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  letter-spacing: 0.13em;
-  line-height: 1.35;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
   text-transform: uppercase;
 }
 @utility section-space {

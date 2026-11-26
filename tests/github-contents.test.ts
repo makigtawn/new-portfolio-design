@@ -56,9 +56,9 @@ describe("GitHub Contents API save helper", () => {
     expect(result.sha).toBe("saved-sha");
     expect(update.sha).toBe("current-sha");
     expect(update.branch).toBe("main");
-    expect(Buffer.from(update.content, "base64").toString("utf8")).toContain(
-      "PLACEHOLDER CONTENT",
-    );
+    expect(
+      Buffer.from(update.content, "base64").toString("utf8"),
+    ).not.toContain("PLACEHOLDER CONTENT");
     expect(String(fetcher.mock.calls[0]?.[0])).toContain("?ref=main");
   });
 

@@ -1,5 +1,6 @@
 import { ArrowUpRight, Mail } from "lucide-react";
 import { RevealHeading } from "@/components/layout/reveal-heading";
+import { FooterBottom } from "@/components/layout/site-footer";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/src/lib/utils";
 import type { SiteContent } from "@/src/lib/content/schema";
@@ -73,7 +74,7 @@ export function ServicesContact({ content }: { content: SiteContent }) {
             </div>
             <nav
               aria-label="Social"
-              className="text-paper/80 flex flex-col items-start gap-1 text-sm"
+              className="text-paper/80 flex flex-col items-start text-sm"
             >
               {content.profile.socials.map((social) => (
                 <a
@@ -81,7 +82,7 @@ export function ServicesContact({ content }: { content: SiteContent }) {
                   href={social.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-paper inline-flex items-center gap-2 py-1.5 transition-colors"
+                  className="hover:text-paper inline-flex min-h-11 min-w-11 items-center gap-2 py-1.5 transition-colors"
                 >
                   {social.label}
                   <ArrowUpRight aria-hidden="true" size={14} />
@@ -89,14 +90,7 @@ export function ServicesContact({ content }: { content: SiteContent }) {
               ))}
             </nav>
           </div>
-          <div className="border-paper/20 text-paper/70 mt-16 flex flex-wrap justify-between gap-4 border-t pt-5 text-xs">
-            <p>
-              © {new Date().getFullYear()} {content.profile.name}
-            </p>
-            <a href="#main-content" className="hover:text-paper py-1">
-              Back to top ↑
-            </a>
-          </div>
+          <FooterBottom name={content.profile.name} className="mt-16" />
         </div>
       </footer>
     </>
